@@ -9,7 +9,7 @@
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <!-- Canvas Confetti -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
@@ -27,7 +27,6 @@
     }
   </script>
   <style>
-    /* Mengunci halaman agar bebas scroll bar */
     html, body {
       height: 100vh;
       overflow: hidden;
@@ -50,31 +49,31 @@
 </head>
 <body class="bg-slate-100 text-slate-800 font-sans flex flex-col justify-between h-screen p-0 m-0">
 
-  <!-- HEADER / BRANDING -->
-  <header class="gradient-header text-white shadow-lg border-b-2 border-pink-500 py-1.5 px-3 flex-shrink-0">
-    <div class="max-w-7xl mx-auto flex items-center justify-between gap-2">
+  <!-- HEADER / BRANDING (DIPERBESAR SESUAI DESAIN ACUAN) -->
+  <header class="gradient-header text-white shadow-2xl border-b-4 border-pink-500 py-3 px-4 flex-shrink-0">
+    <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
       <!-- LOGO KIRI -->
       <div class="flex-shrink-0">
         <img src="https://lh3.googleusercontent.com/d/1Hrwrv_NmmmPfOz8jF-S1PqVpnfh5iVF2" 
              alt="Logo Kiri" 
-             class="h-10 md:h-12 w-auto object-contain drop-shadow rounded bg-white/10 p-0.5">
+             class="h-16 md:h-20 w-auto object-contain drop-shadow-xl rounded-xl bg-white/10 p-1 border border-white/20">
       </div>
 
       <!-- JUDUL & PROMOSI -->
       <div class="text-center flex-1">
-        <h1 class="text-lg md:text-2xl font-extrabold tracking-wider bg-clip-text text-transparent bg-gradient-to-r from-blue-200 via-pink-200 to-white leading-tight">
+        <h1 class="text-2xl md:text-4xl font-black tracking-wider bg-clip-text text-transparent bg-gradient-to-r from-blue-200 via-pink-200 to-white leading-tight uppercase drop-shadow-md">
           LIVE RANK LKBB LASKAR 9
         </h1>
         
         <!-- PROMO SUBTITLE -->
-        <div class="mt-0.5 flex flex-wrap items-center justify-center gap-x-2 gap-y-0.5 text-[10px] md:text-xs font-medium text-pink-200">
-          <span class="bg-blue-900/60 px-2 py-0.2 rounded-full border border-blue-400/30">
-            Rekap by <strong class="text-white">Rekap Andalan</strong>
+        <div class="mt-2 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-xs md:text-sm font-semibold text-pink-200">
+          <span class="bg-blue-900/70 px-3 py-1 rounded-full border border-blue-400/40 shadow-sm">
+            Rekap by <strong class="text-white font-extrabold">Rekap Andalan</strong>
           </span>
-          <span class="flex items-center gap-1 bg-pink-900/60 px-2 py-0.2 rounded-full border border-pink-400/30">
+          <span class="flex items-center gap-1.5 bg-pink-900/70 px-3 py-1 rounded-full border border-pink-400/40 shadow-sm">
             <i class="fab fa-instagram text-pink-400"></i> Tjobrut.store | cosmoatribut
           </span>
-          <span class="flex items-center gap-1 bg-green-900/60 px-2 py-0.2 rounded-full border border-green-400/30 text-green-300">
+          <span class="flex items-center gap-1.5 bg-green-900/70 px-3 py-1 rounded-full border border-green-400/40 text-green-300 shadow-sm">
             <i class="fab fa-whatsapp text-green-400"></i> 0896-9402-4600
           </span>
         </div>
@@ -84,7 +83,7 @@
       <div class="flex-shrink-0">
         <img src="https://lh3.googleusercontent.com/d/1UHSI3CLB0YCZ7uQ3O0sVIGMrVeK7qrK0" 
              alt="Logo Kanan" 
-             class="h-10 md:h-12 w-auto object-contain drop-shadow rounded bg-white/10 p-0.5">
+             class="h-16 md:h-20 w-auto object-contain drop-shadow-xl rounded-xl bg-white/10 p-1 border border-white/20">
       </div>
     </div>
   </header>
@@ -210,7 +209,6 @@
         return;
       }
 
-      // Gunakan 2 kolom jika data lebih dari 12 agar muat di 1 layar
       const useTwoColumns = items.length > 12;
 
       let columnsData = [];
@@ -230,7 +228,6 @@
         tableCard.className = "glass-card rounded-xl shadow border border-slate-200 overflow-hidden w-full";
 
         let rowsHtml = colItems.map((item, idx) => {
-          // Menghitung indeks asli keseluruhan
           const actualIndex = useTwoColumns ? (colIndex * Math.ceil(items.length / 2) + idx) : idx;
           const isTop3 = actualIndex < 3;
 
@@ -239,7 +236,6 @@
           else if (actualIndex === 1) rankBgClass = "bg-slate-100/90 font-bold";
           else if (actualIndex === 2) rankBgClass = "bg-orange-50/90 font-bold";
 
-          // Icon Grand Final untuk Juara Utama 1, 2, 3 (SMP & SMA)
           let grandFinalBadge = "";
           if (isTop3 && (currentTab === 'smp' || currentTab === 'sma')) {
             const colors = ['text-amber-500', 'text-slate-400', 'text-amber-700'];
@@ -300,7 +296,7 @@
     // Inisialisasi
     switchTab('smp');
     fetchData();
-    setInterval(fetchData, 5000); // Auto-refresh 5 detik
+    setInterval(fetchData, 5000);
   </script>
 </body>
 </html>
