@@ -26,26 +26,22 @@
     html, body {
       height: 100vh;
       overflow: hidden;
-      background-color: #0b0f19;
-    }
-    .gradient-header {
-      background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #31102f 100%);
+      background-color: #f8fafc; /* Base Putih Modern */
     }
     
-    /* Custom Scrollbar Rapi */
-    .custom-scroll::-webkit-scrollbar {
-      width: 6px;
+    /* Kunci total scrollbar */
+    * {
+      scrollbar-width: none !important;
+      -ms-overflow-style: none !important;
     }
-    .custom-scroll::-webkit-scrollbar-track {
-      background: rgba(15, 23, 42, 0.6);
-      border-radius: 4px;
+    *::-webkit-scrollbar {
+      display: none !important;
+      width: 0 !important;
+      height: 0 !important;
     }
-    .custom-scroll::-webkit-scrollbar-thumb {
-      background: rgba(236, 72, 153, 0.4);
-      border-radius: 4px;
-    }
-    .custom-scroll::-webkit-scrollbar-thumb:hover {
-      background: rgba(236, 72, 153, 0.8);
+
+    .gradient-header {
+      background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 45%, #ec4899 100%);
     }
 
     @keyframes pulseGlow {
@@ -57,85 +53,85 @@
     }
   </style>
 </head>
-<body class="text-slate-100 font-sans flex flex-col justify-between h-screen p-0 m-0">
+<body class="text-slate-800 font-sans flex flex-col justify-between h-screen p-0 m-0">
 
-  <!-- HEADER / BRANDING -->
-  <header class="gradient-header text-white shadow-2xl border-b-2 border-pink-500/40 py-2 px-6 flex-shrink-0">
+  <!-- HEADER / BRANDING (TEMA BIRU, PINK & PUTIH) -->
+  <header class="gradient-header text-white shadow-lg border-b-4 border-pink-500 py-2 px-6 flex-shrink-0">
     <div class="max-w-[1800px] mx-auto flex items-center justify-between gap-4">
       
-      <!-- LOGO KIRI (TANPA BORDER & LEBIH BESAR) -->
+      <!-- LOGO KIRI (TANPA BORDER) -->
       <div class="flex-shrink-0">
         <img src="https://lh3.googleusercontent.com/d/1Hrwrv_NmmmPfOz8jF-S1PqVpnfh5iVF2" 
              alt="Logo Kiri" 
-             class="h-20 md:h-24 w-auto object-contain drop-shadow-[0_0_15px_rgba(59,130,246,0.5)]">
+             class="h-16 md:h-20 w-auto object-contain drop-shadow-md">
       </div>
 
       <!-- JUDUL & PROMOSI -->
       <div class="text-center flex-1">
-        <h1 class="text-2xl md:text-4xl font-black tracking-wider bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 via-pink-300 to-amber-200 leading-tight uppercase drop-shadow-[0_2px_10px_rgba(236,72,153,0.3)]">
+        <h1 class="text-2xl md:text-4xl font-black tracking-wider text-white leading-tight uppercase drop-shadow-md">
           LIVE RANK LKBB LASKAR 9
         </h1>
         
         <!-- PROMO SUBTITLE -->
-        <div class="mt-1 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-xs md:text-sm font-semibold text-slate-300">
-          <span class="bg-slate-900/80 px-3 py-0.5 rounded-full border border-blue-500/30">
-            dibuat oleh <strong class="text-white font-extrabold">Rekap Andalan</strong>
+        <div class="mt-1 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-xs md:text-sm font-semibold text-blue-100">
+          <span class="bg-blue-900/60 px-3 py-0.5 rounded-full border border-blue-300/30">
+            Rekap by <strong class="text-white font-extrabold">Rekap Andalan</strong>
           </span>
-          <span class="flex items-center gap-1.5 bg-slate-900/80 px-3 py-0.5 rounded-full border border-pink-500/30">
-            <i class="fab fa-instagram text-pink-400"></i> Tjobrut.store | cosmoatribut
+          <span class="flex items-center gap-1.5 bg-pink-900/60 px-3 py-0.5 rounded-full border border-pink-300/30">
+            <i class="fab fa-instagram text-pink-300"></i> Tjobrut.store | cosmoatribut
           </span>
-          <span class="flex items-center gap-1.5 bg-slate-900/80 px-3 py-0.5 rounded-full border border-green-500/30 text-green-300">
-            <i class="fab fa-whatsapp text-green-400"></i> 0896-9402-4600
+          <span class="flex items-center gap-1.5 bg-emerald-900/60 px-3 py-0.5 rounded-full border border-emerald-300/30 text-emerald-200">
+            <i class="fab fa-whatsapp text-emerald-300"></i> 0896-9402-4600
           </span>
-          <span class="flex items-center gap-1.5 bg-pink-950/80 px-3 py-0.5 rounded-full border border-pink-400/50 text-pink-300 font-bold">
+          <span class="flex items-center gap-1.5 bg-white/20 px-3 py-0.5 rounded-full text-white font-bold backdrop-blur-sm">
             <span class="relative flex h-2 w-2">
-              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-pink-400 opacity-75"></span>
-              <span class="relative inline-flex rounded-full h-2 w-2 bg-pink-500"></span>
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-pink-300 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-pink-400"></span>
             </span>
             <span id="live-clock">LIVE 00:00:00 WIB</span>
           </span>
         </div>
       </div>
 
-      <!-- LOGO KANAN (DIPERBESAR KHUSUS & TANPA BORDER) -->
+      <!-- LOGO KANAN (DIPERBESAR & TANPA BORDER) -->
       <div class="flex-shrink-0">
         <img src="https://lh3.googleusercontent.com/d/1UHSI3CLB0YCZ7uQ3O0sVIGMrVeK7qrK0" 
              alt="Logo Kanan" 
-             class="h-24 md:h-28 w-auto object-contain drop-shadow-[0_0_15px_rgba(236,72,153,0.5)] scale-105">
+             class="h-20 md:h-24 w-auto object-contain drop-shadow-md">
       </div>
     </div>
   </header>
 
-  <!-- KONTEN UTAMA: 3 TABEL TINGKATAN BERSISIAN -->
-  <main class="flex-1 px-4 py-3 overflow-hidden max-w-[1800px] w-full mx-auto">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 h-full">
+  <!-- KONTEN UTAMA: 3 TABEL TINGKATAN BERSISIAN (BASE BACKGROUND PUTIH) -->
+  <main class="flex-1 px-4 py-2 overflow-hidden max-w-[1800px] w-full mx-auto flex flex-col">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 h-full items-stretch">
       
       <!-- TABEL 1: PURNA / MANAGEMENT -->
-      <div class="bg-[#111827]/90 border border-pink-500/30 rounded-2xl shadow-xl flex flex-col overflow-hidden backdrop-blur-md">
-        <div class="bg-gradient-to-r from-pink-700 to-purple-800 text-white font-black text-center py-2 px-4 text-base md:text-lg tracking-wider uppercase border-b border-pink-500/30 shadow-md">
-          PURNA / MANAGEMENT <span class="text-xs font-semibold opacity-80">(10)</span>
+      <div class="bg-white border border-pink-200 rounded-2xl shadow-md flex flex-col overflow-hidden">
+        <div class="bg-gradient-to-r from-pink-600 to-pink-500 text-white font-black text-center py-1.5 px-4 text-sm md:text-base tracking-wider uppercase shadow-sm">
+          PURNA / MANAGEMENT
         </div>
-        <div class="flex-1 overflow-y-auto custom-scroll p-2" id="container-purna">
+        <div class="flex-1 overflow-hidden p-1.5" id="container-purna">
           <!-- Data Purna -->
         </div>
       </div>
 
       <!-- TABEL 2: SMP / MTs -->
-      <div class="bg-[#111827]/90 border border-cyan-500/30 rounded-2xl shadow-xl flex flex-col overflow-hidden backdrop-blur-md">
-        <div class="bg-gradient-to-r from-cyan-700 to-blue-800 text-white font-black text-center py-2 px-4 text-base md:text-lg tracking-wider uppercase border-b border-cyan-500/30 shadow-md">
-          SMP / MTs <span class="text-xs font-semibold opacity-80">(29)</span>
+      <div class="bg-white border border-blue-200 rounded-2xl shadow-md flex flex-col overflow-hidden">
+        <div class="bg-gradient-to-r from-blue-700 to-blue-500 text-white font-black text-center py-1.5 px-4 text-sm md:text-base tracking-wider uppercase shadow-sm">
+          SMP / MTs
         </div>
-        <div class="flex-1 overflow-y-auto custom-scroll p-2" id="container-smp">
+        <div class="flex-1 overflow-hidden p-1.5" id="container-smp">
           <!-- Data SMP -->
         </div>
       </div>
 
       <!-- TABEL 3: SMA / SMK / MA -->
-      <div class="bg-[#111827]/90 border border-amber-500/30 rounded-2xl shadow-xl flex flex-col overflow-hidden backdrop-blur-md">
-        <div class="bg-gradient-to-r from-amber-600 to-yellow-700 text-white font-black text-center py-2 px-4 text-base md:text-lg tracking-wider uppercase border-b border-amber-500/30 shadow-md">
-          SMA / SMK / MA <span class="text-xs font-semibold opacity-80">(26)</span>
+      <div class="bg-white border border-indigo-200 rounded-2xl shadow-md flex flex-col overflow-hidden">
+        <div class="bg-gradient-to-r from-indigo-700 via-blue-600 to-pink-600 text-white font-black text-center py-1.5 px-4 text-sm md:text-base tracking-wider uppercase shadow-sm">
+          SMA / SMK / MA
         </div>
-        <div class="flex-1 overflow-y-auto custom-scroll p-2" id="container-sma">
+        <div class="flex-1 overflow-hidden p-1.5" id="container-sma">
           <!-- Data SMA -->
         </div>
       </div>
@@ -152,7 +148,7 @@
 
     const tabLimits = { purna: 10, smp: 29, sma: 26 };
 
-    // Update Jam Live Real-Time
+    // Jam Real-Time
     function updateClock() {
       const now = new Date();
       const timeString = now.toLocaleTimeString('id-ID', { hour12: false });
@@ -192,7 +188,7 @@
       });
     }
 
-    // Efek Confetti Kembang Api
+    // Efek Confetti Kembang Api Layar Penuh
     function triggerConfetti() {
       const duration = 3 * 1000;
       const animationEnd = Date.now() + duration;
@@ -219,53 +215,53 @@
         const items = (liveData[cat] || []).slice(0, maxLimit);
 
         if (items.length === 0) {
-          container.innerHTML = `<div class="p-6 text-center text-slate-500 font-semibold italic">Memuat data...</div>`;
+          container.innerHTML = `<div class="p-4 text-center text-slate-400 font-semibold italic text-xs">Memuat data...</div>`;
           return;
         }
 
         const table = document.createElement('table');
-        table.className = "w-full text-left border-collapse";
+        table.className = "w-full text-left border-collapse h-full";
 
         let rowsHtml = items.map((item, index) => {
           const isTop3 = index < 3;
 
-          let rankBgClass = "bg-slate-900/60 hover:bg-slate-800/80";
-          let rankBadgeStyle = "bg-slate-700 text-slate-300";
+          let rankBgClass = "bg-white hover:bg-slate-50";
+          let rankBadgeStyle = "bg-slate-100 text-slate-700 border border-slate-200";
 
           if (index === 0) {
-            rankBgClass = "bg-amber-950/40 hover:bg-amber-900/50 border-l-4 border-amber-500";
-            rankBadgeStyle = "bg-amber-500 text-slate-950 font-black shadow-md shadow-amber-500/20";
+            rankBgClass = "bg-amber-50/80 font-bold border-l-4 border-amber-500";
+            rankBadgeStyle = "bg-amber-500 text-white font-black shadow-xs";
           } else if (index === 1) {
-            rankBgClass = "bg-slate-800/60 hover:bg-slate-700/60 border-l-4 border-slate-400";
-            rankBadgeStyle = "bg-slate-300 text-slate-950 font-black shadow-md shadow-slate-300/20";
+            rankBgClass = "bg-slate-100/80 font-bold border-l-4 border-slate-400";
+            rankBadgeStyle = "bg-slate-400 text-white font-black shadow-xs";
           } else if (index === 2) {
-            rankBgClass = "bg-orange-950/40 hover:bg-orange-900/50 border-l-4 border-orange-600";
-            rankBadgeStyle = "bg-amber-700 text-white font-black shadow-md shadow-amber-700/20";
+            rankBgClass = "bg-orange-50/80 font-bold border-l-4 border-orange-500";
+            rankBadgeStyle = "bg-amber-700 text-white font-black shadow-xs";
           }
 
-          // Badge GF Khusus SMP & SMA
+          // Badge GF Khusus SMP & SMA pada Juara Utama 1, 2, 3
           let grandFinalBadge = "";
           if (isTop3 && (cat === 'smp' || cat === 'sma')) {
-            const colors = ['text-amber-400', 'text-slate-300', 'text-amber-600'];
-            grandFinalBadge = `<span class="inline-flex items-center gap-1 ml-1 text-[9px] px-1.5 py-0.2 rounded-full bg-amber-500/20 border border-amber-400/50 text-amber-300 font-black animate-glow">
+            const colors = ['text-amber-500', 'text-slate-400', 'text-amber-700'];
+            grandFinalBadge = `<span class="inline-flex items-center gap-0.5 ml-1 text-[8px] px-1 py-0.2 rounded-full bg-amber-100 border border-amber-300 text-amber-900 font-black animate-glow">
               <i class="fa-solid fa-trophy ${colors[index]}"></i> GF
             </span>`;
           }
 
           return `
-            <tr class="${rankBgClass} border-b border-slate-800/60 text-xs transition-colors">
-              <td class="py-1.5 px-3 font-bold text-slate-200">
+            <tr class="${rankBgClass} border-b border-slate-100 text-[10px] leading-none">
+              <td class="py-[2px] px-2 font-bold text-slate-800">
                 <div class="flex items-center">
-                  <span class="inline-block px-2 py-0.5 rounded text-[11px] ${rankBadgeStyle}">
+                  <span class="inline-block px-1.5 py-0.5 rounded text-[9px] ${rankBadgeStyle}">
                     ${item.rank || (index + 1)}
                   </span>
                   ${grandFinalBadge}
                 </div>
               </td>
-              <td class="py-1.5 px-3 text-center font-extrabold text-cyan-400 text-sm w-24">
+              <td class="py-[2px] px-2 text-center font-extrabold text-blue-600 text-[11px] w-20">
                 ${item.totalNilai}
               </td>
-              <td class="py-1.5 px-3 text-center font-bold text-pink-400 text-xs w-20">
+              <td class="py-[2px] px-2 text-center font-bold text-pink-600 text-[10px] w-16">
                 ${item.pbb}
               </td>
             </tr>
@@ -274,13 +270,13 @@
 
         table.innerHTML = `
           <thead>
-            <tr class="bg-slate-950/80 text-slate-400 text-[10px] uppercase tracking-wider border-b border-slate-800">
-              <th class="py-1.5 px-3 text-left">RANK</th>
-              <th class="py-1.5 px-3 text-center w-24">TOTAL</th>
-              <th class="py-1.5 px-3 text-center w-20">PBB</th>
+            <tr class="bg-slate-100 text-slate-600 text-[9px] font-black uppercase tracking-wider border-b border-slate-200">
+              <th class="py-1 px-2 text-left">RANK</th>
+              <th class="py-1 px-2 text-center w-20">TOTAL</th>
+              <th class="py-1 px-2 text-center w-16">PBB</th>
             </tr>
           </thead>
-          <tbody class="divide-y divide-slate-800/40">
+          <tbody class="divide-y divide-slate-100">
             ${rowsHtml}
           </tbody>
         `;
