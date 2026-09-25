@@ -29,18 +29,23 @@
   <style>
     html, body {
       height: 100vh;
-      overflow: hidden;
       background-color: #0b1120;
     }
     
-    * {
-      scrollbar-width: none !important;
-      -ms-overflow-style: none !important;
-    }
-    *::-webkit-scrollbar {
-      display: none !important;
-      width: 0 !important;
-      height: 0 !important;
+    /* Scrollbar hanya aktif untuk container HP */
+    @media (min-width: 768px) {
+      html, body {
+        overflow: hidden;
+      }
+      * {
+        scrollbar-width: none !important;
+        -ms-overflow-style: none !important;
+      }
+      *::-webkit-scrollbar {
+        display: none !important;
+        width: 0 !important;
+        height: 0 !important;
+      }
     }
 
     .header-gradient {
@@ -79,36 +84,36 @@
 <body class="text-slate-800 font-sans flex flex-col justify-between h-screen p-0 m-0">
 
   <!-- HEADER BRANDING -->
-  <header class="header-gradient text-white shadow-2xl border-b-2 border-pink-400 py-2 px-6 flex-shrink-0">
-    <div class="max-w-[1920px] mx-auto flex items-center justify-between gap-4">
+  <header class="header-gradient text-white shadow-2xl border-b-2 border-pink-400 py-2 px-3 md:px-6 flex-shrink-0">
+    <div class="max-w-[1920px] mx-auto flex items-center justify-between gap-2 md:gap-4">
       
-      <!-- SISI KIRI: LOGO KIRI & STATUS LIVE CLOCK REAL-TIME -->
-      <div class="flex items-center gap-4 flex-shrink-0">
+      <!-- SISI KIRI: LOGO KIRI & STATUS LIVE CLOCK -->
+      <div class="flex items-center gap-2 md:gap-4 flex-shrink-0">
         <img src="https://lh3.googleusercontent.com/d/1Hrwrv_NmmmPfOz8jF-S1PqVpnfh5iVF2=s1000" 
              alt="Logo Kiri" 
-             class="h-16 md:h-20 w-auto object-contain drop-shadow-[0_0_12px_rgba(255,255,255,0.5)]">
+             class="h-12 md:h-20 w-auto object-contain drop-shadow-[0_0_12px_rgba(255,255,255,0.5)]">
         
-        <div class="flex items-center gap-2 bg-pink-950/80 px-3 py-1.5 rounded-xl border border-pink-400/50 shadow-md">
-          <span class="relative flex h-2.5 w-2.5">
+        <div class="flex items-center gap-1.5 md:gap-2 bg-pink-950/80 px-2 md:px-3 py-1 md:py-1.5 rounded-xl border border-pink-400/50 shadow-md">
+          <span class="relative flex h-2 w-2 md:h-2.5 md:w-2.5">
             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-pink-400 opacity-75"></span>
-            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-pink-500"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 md:h-2.5 md:w-2.5 bg-pink-500"></span>
           </span>
           <div class="flex flex-col">
-            <span class="text-[9px] text-pink-300 font-black tracking-widest uppercase leading-none">STATUS LIVE</span>
-            <span id="live-realtime-clock" class="text-xs md:text-sm font-black text-white leading-tight">00:00:00 WIB</span>
+            <span class="text-[8px] md:text-[9px] text-pink-300 font-black tracking-widest uppercase leading-none">LIVE</span>
+            <span id="live-realtime-clock" class="text-[10px] md:text-sm font-black text-white leading-tight">00:00:00</span>
           </div>
         </div>
       </div>
 
       <!-- SISI TENGAH: JUDUL LIVERANK LKBB LASKAR 9 -->
-      <div class="text-center flex-1">
-        <h1 class="text-2xl md:text-4xl font-black tracking-wider text-white uppercase drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)]">
+      <div class="text-center flex-1 min-w-0">
+        <h1 class="text-base sm:text-2xl md:text-4xl font-black tracking-wider text-white uppercase drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)] truncate">
           LIVERANK LKBB LASKAR 9
         </h1>
         
-        <div class="mt-1 flex items-center justify-center gap-2 text-xs md:text-sm font-bold text-blue-100">
-          <span class="h-[1px] w-8 md:w-16 bg-blue-300/40"></span>
-          <span>REKAP BY <strong class="text-white font-extrabold uppercase tracking-wider">REKAP ANDALAN</strong></span>
+        <div class="mt-0.5 md:mt-1 flex items-center justify-center gap-1.5 md:gap-2 text-[10px] md:text-sm font-bold text-blue-100">
+          <span class="hidden sm:inline-block h-[1px] w-6 md:w-16 bg-blue-300/40"></span>
+          <span class="truncate">REKAP BY <strong class="text-white font-extrabold uppercase tracking-wider">REKAP ANDALAN</strong></span>
           <span class="hidden md:inline text-blue-300/50">|</span>
           <span class="hidden md:flex items-center gap-1 text-pink-200">
             <i class="fab fa-instagram text-pink-300"></i> Tjobrut.store | cosmoatribut
@@ -117,57 +122,77 @@
           <span class="hidden md:flex items-center gap-1 text-emerald-300">
             <i class="fab fa-whatsapp text-emerald-300"></i> 0896-9402-4600
           </span>
-          <span class="h-[1px] w-8 md:w-16 bg-blue-300/40"></span>
+          <span class="hidden sm:inline-block h-[1px] w-6 md:w-16 bg-blue-300/40"></span>
         </div>
       </div>
 
-      <!-- SISI KANAN: LAST UPDATE & LOGO KANAN (HD & DIPERBESAR) -->
-      <div class="flex items-center gap-4 flex-shrink-0">
-        <div class="flex flex-col items-end bg-blue-950/70 px-3.5 py-1.5 rounded-xl border border-blue-400/40 shadow-md text-right">
-          <span class="text-[9px] text-blue-200 uppercase tracking-widest font-black flex items-center gap-1 leading-none">
-            <i class="fa-regular fa-clock"></i> LAST UPDATE
+      <!-- SISI KANAN: LAST UPDATE & LOGO KANAN -->
+      <div class="flex items-center gap-2 md:gap-4 flex-shrink-0">
+        <div class="flex flex-col items-end bg-blue-950/70 px-2 md:px-3.5 py-1 md:py-1.5 rounded-xl border border-blue-400/40 shadow-md text-right">
+          <span class="text-[8px] md:text-[9px] text-blue-200 uppercase tracking-widest font-black flex items-center gap-1 leading-none">
+            <i class="fa-regular fa-clock"></i> UPDATE
           </span>
-          <span id="last-update-clock" class="text-xs md:text-sm font-black text-amber-300 leading-tight">--:--:-- WIB</span>
+          <span id="last-update-clock" class="text-[10px] md:text-sm font-black text-amber-300 leading-tight">--:--:--</span>
         </div>
 
-        <!-- LOGO REKAP ANDALAN HD -->
         <img src="https://lh3.googleusercontent.com/d/1UHSI3CLB0YCZ7uQ3O0sVIGMrVeK7qrK0=s1000" 
              alt="Logo Rekap Andalan" 
-             class="h-20 md:h-28 w-auto object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.7)]">
+             class="h-14 md:h-28 w-auto object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.7)]">
       </div>
     </div>
   </header>
 
-  <!-- KONTEN UTAMA: 3 KOTAK TINGKATAN BERSISIAN -->
-  <main class="flex-1 px-3 py-2 overflow-hidden max-w-[1920px] w-full mx-auto flex flex-col justify-between">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-3 h-full items-stretch">
+  <!-- KONTEN UTAMA -->
+  <main class="flex-1 px-2 md:px-3 py-2 overflow-hidden max-w-[1920px] w-full mx-auto flex flex-col justify-between">
+    
+    <!-- NAVBAR TAB KHUSUS TAMPILAN HP / MOBILE -->
+    <div class="flex md:hidden items-center justify-between gap-1 mb-2 bg-slate-900/90 p-1 rounded-xl border border-slate-700 flex-shrink-0">
+      <button onclick="setMobileTab('purna')" id="mob-tab-purna" 
+              class="flex-1 py-1.5 px-1 rounded-lg text-[10px] font-black uppercase tracking-wider transition-all text-center">
+        PURNA
+      </button>
+      <button onclick="setMobileTab('smp')" id="mob-tab-smp" 
+              class="flex-1 py-1.5 px-1 rounded-lg text-[10px] font-black uppercase tracking-wider transition-all text-center">
+        SMP / MTs
+      </button>
+      <button onclick="setMobileTab('sma')" id="mob-tab-sma" 
+              class="flex-1 py-1.5 px-1 rounded-lg text-[10px] font-black uppercase tracking-wider transition-all text-center">
+        SMA / SMK / MA
+      </button>
+    </div>
+
+    <!-- GRID TINGKATAN (DESKTOP: 3 KOLOM SEKALIGUS | HP: SINGLE ACTIVE TAB CONTENT) -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3 h-full items-stretch overflow-hidden">
       
       <!-- KATEGORI 1: PURNA / MANAGEMENT -->
-      <div class="bg-white border-2 border-pink-400 rounded-2xl shadow-xl flex flex-col overflow-hidden h-full">
-        <div class="bg-gradient-to-r from-pink-600 to-rose-500 text-white font-black text-center py-1.5 px-3 text-sm md:text-base tracking-wider uppercase shadow flex items-center justify-center">
-          PURNA / MANAGEMENT
-        </div>
-        <div class="flex-1 p-2 flex flex-col justify-between overflow-hidden" id="card-purna">
+      <div id="col-purna" class="bg-white border-2 border-pink-400 rounded-2xl shadow-xl flex-col overflow-hidden h-full flex">
+        <button onclick="setMobileTab('purna')" class="bg-gradient-to-r from-pink-600 to-rose-500 text-white font-black text-center py-1.5 px-3 text-xs md:text-base tracking-wider uppercase shadow flex items-center justify-between md:justify-center w-full">
+          <span>PURNA / MANAGEMENT</span>
+          <i class="fa-solid fa-chevron-down md:hidden text-xs"></i>
+        </button>
+        <div class="flex-1 p-2 flex flex-col justify-between overflow-y-auto md:overflow-hidden max-h-[calc(100vh-170px)] md:max-h-none" id="card-purna">
           <!-- Render via JS -->
         </div>
       </div>
 
       <!-- KATEGORI 2: SMP / MTs -->
-      <div class="bg-white border-2 border-blue-400 rounded-2xl shadow-xl flex flex-col overflow-hidden h-full">
-        <div class="bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-black text-center py-1.5 px-3 text-sm md:text-base tracking-wider uppercase shadow flex items-center justify-center">
-          SMP / MTs
-        </div>
-        <div class="flex-1 p-2 flex flex-col justify-between overflow-hidden" id="card-smp">
+      <div id="col-smp" class="bg-white border-2 border-blue-400 rounded-2xl shadow-xl flex-col overflow-hidden h-full flex">
+        <button onclick="setMobileTab('smp')" class="bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-black text-center py-1.5 px-3 text-xs md:text-base tracking-wider uppercase shadow flex items-center justify-between md:justify-center w-full">
+          <span>SMP / MTs</span>
+          <i class="fa-solid fa-chevron-down md:hidden text-xs"></i>
+        </button>
+        <div class="flex-1 p-2 flex flex-col justify-between overflow-y-auto md:overflow-hidden max-h-[calc(100vh-170px)] md:max-h-none" id="card-smp">
           <!-- Render via JS -->
         </div>
       </div>
 
       <!-- KATEGORI 3: SMA / SMK / MA -->
-      <div class="bg-white border-2 border-pink-400 rounded-2xl shadow-xl flex flex-col overflow-hidden h-full">
-        <div class="bg-gradient-to-r from-pink-600 to-purple-600 text-white font-black text-center py-1.5 px-3 text-sm md:text-base tracking-wider uppercase shadow flex items-center justify-center">
-          SMA / SMK / MA
-        </div>
-        <div class="flex-1 p-2 flex flex-col justify-between overflow-hidden" id="card-sma">
+      <div id="col-sma" class="bg-white border-2 border-pink-400 rounded-2xl shadow-xl flex-col overflow-hidden h-full flex">
+        <button onclick="setMobileTab('sma')" class="bg-gradient-to-r from-pink-600 to-purple-600 text-white font-black text-center py-1.5 px-3 text-xs md:text-base tracking-wider uppercase shadow flex items-center justify-between md:justify-center w-full">
+          <span>SMA / SMK / MA</span>
+          <i class="fa-solid fa-chevron-down md:hidden text-xs"></i>
+        </button>
+        <div class="flex-1 p-2 flex flex-col justify-between overflow-y-auto md:overflow-hidden max-h-[calc(100vh-170px)] md:max-h-none" id="card-sma">
           <!-- Render via JS -->
         </div>
       </div>
@@ -182,8 +207,46 @@
     let liveData = { purna: [], smp: [], sma: [] };
     let previousRanks = { purna: {}, smp: {}, sma: {} };
     let previousFullSignature = { purna: "", smp: "", sma: "" };
+    let activeMobileTab = 'smp'; // Default active tab di HP
 
     const tabLimits = { purna: 10, smp: 29, sma: 26 };
+
+    // Buka Tab HP
+    function setMobileTab(tabKey) {
+      activeMobileTab = tabKey;
+      updateMobileTabUI();
+    }
+
+    function updateMobileTabUI() {
+      const isMobile = window.innerWidth < 768;
+      
+      ['purna', 'smp', 'sma'].forEach(cat => {
+        const col = document.getElementById(`col-${cat}`);
+        const mobBtn = document.getElementById(`mob-tab-${cat}`);
+        
+        if (mobBtn) {
+          if (cat === activeMobileTab) {
+            mobBtn.className = "flex-1 py-1.5 px-1 rounded-lg text-[10px] font-black uppercase tracking-wider transition-all text-center bg-gradient-to-r from-blue-600 to-pink-500 text-white shadow-md";
+          } else {
+            mobBtn.className = "flex-1 py-1.5 px-1 rounded-lg text-[10px] font-black uppercase tracking-wider transition-all text-center text-slate-400 hover:text-white";
+          }
+        }
+
+        if (col) {
+          if (isMobile) {
+            if (cat === activeMobileTab) {
+              col.style.display = 'flex';
+            } else {
+              col.style.display = 'none';
+            }
+          } else {
+            col.style.display = 'flex';
+          }
+        }
+      });
+    }
+
+    window.addEventListener('resize', updateMobileTabUI);
 
     // Jam Realtime
     function updateLiveRealtimeClock() {
@@ -219,6 +282,7 @@
         checkConfettiTrigger(data);
         liveData = data;
         renderAllCategories();
+        updateMobileTabUI();
 
       } catch (error) {
         console.error("Gagal mengambil data:", error);
@@ -258,7 +322,7 @@
       }, 250);
     }
 
-    // Helper SVG Rosette Medal Ribbon untuk Rank 1, 2, 3 (DIPERBESAR & DOMINAN)
+    // SVG Rosette Badge (Diperbesar)
     function getRosetteBadge(num) {
       if (num === 1) {
         return `
@@ -353,7 +417,6 @@
       }
     }
 
-    // Template Kartu Podiums 1, 2, 3
     function buildPodiumCard(item, i, cat) {
       const podiumConfig = [
         { bg: 'bg-gradient-to-b from-amber-50 to-orange-50/80 border-amber-300', titleColor: 'text-amber-900' },
@@ -377,7 +440,6 @@
 
       return `
         <div class="relative ${cfg.bg} border-2 rounded-xl p-2 pt-2.5 flex flex-col justify-between shadow-sm min-h-[76px] overflow-visible w-full">
-          <!-- BADGE PITA ROSETTE SANGAT DOMINAN DI KIRI ATAS -->
           <div class="absolute -top-4 -left-3 z-20">
             ${getRosetteBadge(i + 1)}
           </div>
@@ -417,7 +479,6 @@
         let podiumWrapper = document.createElement('div');
 
         if (cat === 'purna') {
-          // PENATAAN KHUSUS PURNA / MANAGEMENT (TIDAK TERLALU LEBAR)
           podiumWrapper.className = "flex flex-col items-center gap-2 mb-2 mt-2 flex-shrink-0 w-full";
           podiumWrapper.innerHTML = `
             <div class="flex justify-center w-full">
@@ -431,7 +492,6 @@
             </div>
           `;
         } else {
-          // SUSUNAN 3 KOLOM KANAN-KIRI LURUS KHUSUS SMP DAN SMA
           podiumWrapper.className = "grid grid-cols-3 gap-2 mb-2 mt-2 flex-shrink-0 w-full";
           let podiumHtml = '';
           for (let i = 0; i < 3; i++) {
@@ -442,7 +502,7 @@
 
         container.appendChild(podiumWrapper);
 
-        // --- 2. SUB-TABEL TANPA NOMOR (#) DAN KOLOM TOTAL ---
+        // --- 2. SUB-TABEL BANJAR ---
         const mid = Math.ceil(remainingItems.length / 2);
         const leftList = remainingItems.slice(0, mid);
         const rightList = remainingItems.slice(mid);
