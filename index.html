@@ -43,7 +43,7 @@
       background: linear-gradient(135deg, #0284c7 0%, #1e40af 40%, #be185d 100%);
     }
 
-    /* Animasi Cahaya Berkilau (Shining Ticket) */
+    /* Animasi Tiket Berkilau */
     @keyframes shineSweep {
       0% { background-position: -200% 0; }
       100% { background-position: 200% 0; }
@@ -78,7 +78,7 @@
   <header class="header-gradient text-white shadow-2xl border-b-2 border-pink-400 py-2 px-6 flex-shrink-0">
     <div class="max-w-[1920px] mx-auto flex items-center justify-between gap-4">
       
-      <!-- SISI KIRI: LOGO KIRI & STATUS LIVE CLOCK -->
+      <!-- SISI KIRI: LOGO KIRI & STATUS LIVE CLOCK REAL-TIME -->
       <div class="flex items-center gap-4 flex-shrink-0">
         <img src="https://lh3.googleusercontent.com/d/1Hrwrv_NmmmPfOz8jF-S1PqVpnfh5iVF2" 
              alt="Logo Kiri" 
@@ -117,7 +117,7 @@
         </div>
       </div>
 
-      <!-- SISI KANAN: LAST UPDATE & LOGO KANAN (DIPERBESAR) -->
+      <!-- SISI KANAN: LAST UPDATE & LOGO KANAN -->
       <div class="flex items-center gap-4 flex-shrink-0">
         <div class="flex flex-col items-end bg-blue-950/70 px-3.5 py-1.5 rounded-xl border border-blue-400/40 shadow-md text-right">
           <span class="text-[9px] text-blue-200 uppercase tracking-widest font-black flex items-center gap-1 leading-none">
@@ -126,7 +126,6 @@
           <span id="last-update-clock" class="text-xs md:text-sm font-black text-amber-300 leading-tight">--:--:-- WIB</span>
         </div>
 
-        <!-- LOGO KANAN DIPERBESAR -->
         <img src="https://lh3.googleusercontent.com/d/1UHSI3CLB0YCZ7uQ3O0sVIGMrVeK7qrK0" 
              alt="Logo Kanan" 
              class="h-20 md:h-26 w-auto object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.6)] scale-110">
@@ -254,6 +253,145 @@
       }, 250);
     }
 
+    // Helper SVG Rosette Medal Ribbon untuk Rank 1, 2, 3
+    function getRosetteBadge(num) {
+      if (num === 1) {
+        return `
+          <svg class="w-8 h-10 drop-shadow-md overflow-visible flex-shrink-0" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M28 70 L28 115 L50 98 L72 115 L72 70 Z" fill="url(#goldRibbon)" stroke="#78350f" stroke-width="1.5"/>
+            <circle cx="50" cy="50" r="45" fill="url(#goldOuter)" stroke="#b45309" stroke-width="2"/>
+            <circle cx="50" cy="50" r="40" stroke="#fef08a" stroke-width="1.5" stroke-dasharray="4 2"/>
+            <circle cx="50" cy="50" r="35" fill="url(#goldInner)" stroke="#a16207" stroke-width="1.5"/>
+            <circle cx="50" cy="50" r="28" stroke="#854d0e" stroke-width="1" stroke-dasharray="3 3" fill="none"/>
+            <path d="M43 28 L44 30 L46 30 L44.5 31.5 L45 33.5 L43 32 L41 33.5 L41.5 31.5 L40 30 L42 30 Z" fill="#854d0e"/>
+            <path d="M50 25 L51.5 27.5 L54 27.5 L52 29 L53 31.5 L50 30 L47 31.5 L48 29 L46 27.5 L48.5 27.5 Z" fill="#854d0e"/>
+            <path d="M57 28 L58 30 L60 30 L58.5 31.5 L59 33.5 L57 32 L55 33.5 L55.5 31.5 L54 30 L56 30 Z" fill="#854d0e"/>
+            <text x="50" y="60" font-family="Poppins, sans-serif" font-size="30" font-weight="900" fill="#713f12" text-anchor="middle">1</text>
+            <defs>
+              <linearGradient id="goldOuter" x1="0" y1="0" x2="100" y2="100">
+                <stop offset="0%" stop-color="#fef08a"/>
+                <stop offset="50%" stop-color="#f59e0b"/>
+                <stop offset="100%" stop-color="#b45309"/>
+              </linearGradient>
+              <linearGradient id="goldInner" x1="0" y1="0" x2="100" y2="100">
+                <stop offset="0%" stop-color="#fffbeb"/>
+                <stop offset="50%" stop-color="#fde047"/>
+                <stop offset="100%" stop-color="#ca8a04"/>
+              </linearGradient>
+              <linearGradient id="goldRibbon" x1="0" y1="0" x2="0" y2="120">
+                <stop offset="0%" stop-color="#f59e0b"/>
+                <stop offset="100%" stop-color="#78350f"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        `;
+      } else if (num === 2) {
+        return `
+          <svg class="w-8 h-10 drop-shadow-md overflow-visible flex-shrink-0" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M28 70 L28 115 L50 98 L72 115 L72 70 Z" fill="url(#silverRibbon)" stroke="#334155" stroke-width="1.5"/>
+            <circle cx="50" cy="50" r="45" fill="url(#silverOuter)" stroke="#475569" stroke-width="2"/>
+            <circle cx="50" cy="50" r="40" stroke="#f8fafc" stroke-width="1.5" stroke-dasharray="4 2"/>
+            <circle cx="50" cy="50" r="35" fill="url(#silverInner)" stroke="#334155" stroke-width="1.5"/>
+            <circle cx="50" cy="50" r="28" stroke="#1e293b" stroke-width="1" stroke-dasharray="3 3" fill="none"/>
+            <path d="M43 28 L44 30 L46 30 L44.5 31.5 L45 33.5 L43 32 L41 33.5 L41.5 31.5 L40 30 L42 30 Z" fill="#334155"/>
+            <path d="M50 25 L51.5 27.5 L54 27.5 L52 29 L53 31.5 L50 30 L47 31.5 L48 29 L46 27.5 L48.5 27.5 Z" fill="#334155"/>
+            <path d="M57 28 L58 30 L60 30 L58.5 31.5 L59 33.5 L57 32 L55 33.5 L55.5 31.5 L54 30 L56 30 Z" fill="#334155"/>
+            <text x="50" y="60" font-family="Poppins, sans-serif" font-size="30" font-weight="900" fill="#0f172a" text-anchor="middle">2</text>
+            <defs>
+              <linearGradient id="silverOuter" x1="0" y1="0" x2="100" y2="100">
+                <stop offset="0%" stop-color="#f8fafc"/>
+                <stop offset="50%" stop-color="#94a3b8"/>
+                <stop offset="100%" stop-color="#475569"/>
+              </linearGradient>
+              <linearGradient id="silverInner" x1="0" y1="0" x2="100" y2="100">
+                <stop offset="0%" stop-color="#ffffff"/>
+                <stop offset="50%" stop-color="#cbd5e1"/>
+                <stop offset="100%" stop-color="#64748b"/>
+              </linearGradient>
+              <linearGradient id="silverRibbon" x1="0" y1="0" x2="0" y2="120">
+                <stop offset="0%" stop-color="#64748b"/>
+                <stop offset="100%" stop-color="#1e293b"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        `;
+      } else {
+        return `
+          <svg class="w-8 h-10 drop-shadow-md overflow-visible flex-shrink-0" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M28 70 L28 115 L50 98 L72 115 L72 70 Z" fill="url(#bronzeRibbon)" stroke="#78350f" stroke-width="1.5"/>
+            <circle cx="50" cy="50" r="45" fill="url(#bronzeOuter)" stroke="#92400e" stroke-width="2"/>
+            <circle cx="50" cy="50" r="40" stroke="#ffedd5" stroke-width="1.5" stroke-dasharray="4 2"/>
+            <circle cx="50" cy="50" r="35" fill="url(#bronzeInner)" stroke="#78350f" stroke-width="1.5"/>
+            <circle cx="50" cy="50" r="28" stroke="#451a03" stroke-width="1" stroke-dasharray="3 3" fill="none"/>
+            <path d="M43 28 L44 30 L46 30 L44.5 31.5 L45 33.5 L43 32 L41 33.5 L41.5 31.5 L40 30 L42 30 Z" fill="#78350f"/>
+            <path d="M50 25 L51.5 27.5 L54 27.5 L52 29 L53 31.5 L50 30 L47 31.5 L48 29 L46 27.5 L48.5 27.5 Z" fill="#78350f"/>
+            <path d="M57 28 L58 30 L60 30 L58.5 31.5 L59 33.5 L57 32 L55 33.5 L55.5 31.5 L54 30 L56 30 Z" fill="#78350f"/>
+            <text x="50" y="60" font-family="Poppins, sans-serif" font-size="30" font-weight="900" fill="#451a03" text-anchor="middle">3</text>
+            <defs>
+              <linearGradient id="bronzeOuter" x1="0" y1="0" x2="100" y2="100">
+                <stop offset="0%" stop-color="#ffedd5"/>
+                <stop offset="50%" stop-color="#d97706"/>
+                <stop offset="100%" stop-color="#78350f"/>
+              </linearGradient>
+              <linearGradient id="bronzeInner" x1="0" y1="0" x2="100" y2="100">
+                <stop offset="0%" stop-color="#fff7ed"/>
+                <stop offset="50%" stop-color="#f97316"/>
+                <stop offset="100%" stop-color="#9a3412"/>
+              </linearGradient>
+              <linearGradient id="bronzeRibbon" x1="0" y1="0" x2="0" y2="120">
+                <stop offset="0%" stop-color="#ea580c"/>
+                <stop offset="100%" stop-color="#451a03"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        `;
+      }
+    }
+
+    // Template Kartu Podiums 1, 2, 3
+    function buildPodiumCard(item, i, cat) {
+      const podiumConfig = [
+        { bg: 'bg-gradient-to-b from-amber-50 to-orange-50/80 border-amber-300', titleColor: 'text-amber-900' },
+        { bg: 'bg-gradient-to-b from-slate-50 to-slate-100/80 border-slate-300', titleColor: 'text-slate-800' },
+        { bg: 'bg-gradient-to-b from-orange-50 to-amber-100/60 border-orange-300', titleColor: 'text-orange-950' }
+      ];
+
+      const cfg = podiumConfig[i];
+      const data = item || { rank: `UTAMA ${i+1}`, totalNilai: 0, pbb: 0 };
+
+      let gfTicket = '';
+      if (cat === 'smp' || cat === 'sma') {
+        gfTicket = `
+          <div class="mt-1">
+            <span class="shining-ticket inline-flex items-center gap-1 text-[8px] font-black text-amber-950 px-1.5 py-0.5 rounded-md uppercase tracking-wider border border-amber-300/80">
+              <i class="fa-solid fa-ticket text-[9px]"></i> GRANDFINAL
+            </span>
+          </div>
+        `;
+      }
+
+      return `
+        <div class="relative ${cfg.bg} border-2 rounded-xl p-2 pt-2.5 flex flex-col justify-between shadow-sm min-h-[72px] overflow-visible">
+          <!-- BADGE PITA ROSETTE MELEWATI BORDER KIRI ATAS -->
+          <div class="absolute -top-3.5 -left-2 z-10">
+            ${getRosetteBadge(i + 1)}
+          </div>
+
+          <div class="pl-5">
+            <div class="text-[10px] md:text-[11px] font-black ${cfg.titleColor} leading-tight truncate">
+              ${data.rank || `UTAMA ${i+1}`}
+            </div>
+            ${gfTicket}
+          </div>
+
+          <div class="mt-1.5 flex items-center justify-between border-t border-slate-200/80 pt-1">
+            <div class="text-[9px] font-bold text-slate-700">TOTAL: <span class="text-blue-700 font-black text-[11px]">${data.totalNilai}</span></div>
+            <div class="text-[9px] font-bold text-pink-600">PBB: ${data.pbb}</div>
+          </div>
+        </div>
+      `;
+    }
+
     function renderAllCategories() {
       ['purna', 'smp', 'sma'].forEach(cat => {
         const container = document.getElementById(`card-${cat}`);
@@ -270,61 +408,36 @@
         const top3 = items.slice(0, 3);
         const remainingItems = items.slice(3);
 
-        // --- 1. CARD JUARA UTAMA 1, 2, 3 (LEBIH BESAR KEBAWAH & LOGO OVERLAP BORDER) ---
-        const podiumWrapper = document.createElement('div');
-        podiumWrapper.className = "grid grid-cols-3 gap-2 mb-2 mt-2 flex-shrink-0";
+        // --- 1. PODIUM TOP 3 CARDS ---
+        let podiumWrapper = document.createElement('div');
 
-        const podiumConfig = [
-          { bg: 'bg-gradient-to-b from-amber-50 to-orange-50/80 border-amber-300', medalBg: 'bg-gradient-to-tr from-amber-500 via-yellow-400 to-amber-300 text-slate-950 shadow-amber-500/50', num: '1', titleColor: 'text-amber-900' },
-          { bg: 'bg-gradient-to-b from-slate-50 to-slate-100/80 border-slate-300', medalBg: 'bg-gradient-to-tr from-slate-400 via-slate-300 to-slate-200 text-slate-950 shadow-slate-400/50', num: '2', titleColor: 'text-slate-800' },
-          { bg: 'bg-gradient-to-b from-orange-50 to-amber-100/60 border-orange-300', medalBg: 'bg-gradient-to-tr from-amber-700 via-amber-600 to-orange-400 text-white shadow-amber-700/50', num: '3', titleColor: 'text-orange-950' }
-        ];
-
-        let podiumHtml = '';
-        for (let i = 0; i < 3; i++) {
-          const item = top3[i] || { rank: `UTAMA ${i+1}`, totalNilai: 0, pbb: 0 };
-          const cfg = podiumConfig[i];
-
-          // Tiket Animasi "GRANDFINAL" Khas
-          let gfTicket = '';
-          if (cat === 'smp' || cat === 'sma') {
-            gfTicket = `
-              <div class="mt-1">
-                <span class="shining-ticket inline-flex items-center gap-1 text-[8px] font-black text-amber-950 px-1.5 py-0.5 rounded-md uppercase tracking-wider border border-amber-300/80">
-                  <i class="fa-solid fa-ticket text-[9px]"></i> GRANDFINAL
-                </span>
-              </div>
-            `;
-          }
-
-          podiumHtml += `
-            <div class="relative ${cfg.bg} border-2 rounded-xl p-2 pt-2.5 flex flex-col justify-between shadow-sm min-h-[72px] overflow-visible">
-              
-              <!-- LOGO/MEDAL ANGKA 1, 2, 3 OVERLAP DARI BORDER KIRI ATAS -->
-              <div class="absolute -top-3.5 -left-2 z-10 w-7 h-7 rounded-full ${cfg.medalBg} font-black text-xs flex items-center justify-center shadow-md border-2 border-white">
-                ${cfg.num}
-              </div>
-
-              <!-- NAMA RANK & TICKET GRANDFINAL -->
-              <div class="pl-4">
-                <div class="text-[10px] md:text-[11px] font-black ${cfg.titleColor} leading-tight truncate">
-                  ${item.rank || `UTAMA ${i+1}`}
-                </div>
-                ${gfTicket}
-              </div>
-
-              <!-- BAGIAN BAWAH: TOTAL NILAI & PBB -->
-              <div class="mt-1.5 flex items-center justify-between border-t border-slate-200/80 pt-1">
-                <div class="text-[9px] font-bold text-slate-700">TOT: <span class="text-blue-700 font-black text-[11px]">${item.totalNilai}</span></div>
-                <div class="text-[9px] font-bold text-pink-600">PBB: ${item.pbb}</div>
+        if (cat === 'purna') {
+          // KANAN-KIRI-ATAS SEGITIGA KHUSUS PURNA / MANAGEMENT
+          podiumWrapper.className = "flex flex-col gap-2 mb-2 mt-2 flex-shrink-0";
+          podiumWrapper.innerHTML = `
+            <div class="flex justify-center">
+              <div class="w-7/12">
+                ${buildPodiumCard(top3[0], 0, cat)}
               </div>
             </div>
+            <div class="grid grid-cols-2 gap-2">
+              ${buildPodiumCard(top3[1], 1, cat)}
+              ${buildPodiumCard(top3[2], 2, cat)}
+            </div>
           `;
+        } else {
+          // SUSUNAN 3 KOLOM KANAN-KIRI LURUS KHUSUS SMP DAN SMA
+          podiumWrapper.className = "grid grid-cols-3 gap-2 mb-2 mt-2 flex-shrink-0";
+          let podiumHtml = '';
+          for (let i = 0; i < 3; i++) {
+            podiumHtml += buildPodiumCard(top3[i], i, cat);
+          }
+          podiumWrapper.innerHTML = podiumHtml;
         }
-        podiumWrapper.innerHTML = podiumHtml;
+
         container.appendChild(podiumWrapper);
 
-        // --- 2. SUB-TABEL TANPA NOMOR (#) DISAMPING RANK ---
+        // --- 2. SUB-TABEL TANPA NOMOR (#) DAN KOLOM TOTAL ---
         const mid = Math.ceil(remainingItems.length / 2);
         const leftList = remainingItems.slice(0, mid);
         const rightList = remainingItems.slice(mid);
@@ -342,7 +455,6 @@
             const actualIndex = startIndex + idx;
             const itemKey = item.rank || `row-${actualIndex}`;
 
-            // Panah Perubahan Posisi Rank
             let arrowIndicator = "";
             if (previousRanks[cat] && previousRanks[cat][itemKey] !== undefined) {
               const prevIdx = previousRanks[cat][itemKey];
@@ -364,7 +476,7 @@
                     ${arrowIndicator}
                   </div>
                 </td>
-                <td class="py-1 px-2 text-center font-black text-blue-700 w-12">${item.totalNilai}</td>
+                <td class="py-1 px-2 text-center font-black text-blue-700 w-14">${item.totalNilai}</td>
                 <td class="py-1 px-2 text-center font-bold text-pink-600 w-10">${item.pbb}</td>
               </tr>
             `;
@@ -376,7 +488,7 @@
                 <thead>
                   <tr class="${headerBg} text-white text-[9px] md:text-[10px] font-black uppercase tracking-wider">
                     <th class="py-1 px-2">RANK</th>
-                    <th class="py-1 px-2 text-center w-12">TOT</th>
+                    <th class="py-1 px-2 text-center w-14">TOTAL</th>
                     <th class="py-1 px-2 text-center w-10">PBB</th>
                   </tr>
                 </thead>
