@@ -26,7 +26,7 @@
     html, body {
       height: 100vh;
       overflow: hidden;
-      background-color: #0d1527;
+      background-color: #0b1120;
     }
     
     * {
@@ -40,104 +40,118 @@
     }
 
     .header-gradient {
-      background: linear-gradient(135deg, #0284c7 0%, #1e40af 40%, #db2777 100%);
+      background: linear-gradient(135deg, #0284c7 0%, #1e40af 40%, #be185d 100%);
     }
 
     @keyframes pulseGlow {
       0%, 100% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.05); opacity: 0.9; }
+      50% { transform: scale(1.15); opacity: 0.8; }
     }
     .animate-glow {
-      animation: pulseGlow 2s infinite;
+      animation: pulseGlow 1.8s infinite;
+    }
+
+    .glow-green {
+      filter: drop-shadow(0 0 6px #22c55e);
+    }
+    .glow-red {
+      filter: drop-shadow(0 0 6px #ef4444);
     }
   </style>
 </head>
 <body class="text-slate-800 font-sans flex flex-col justify-between h-screen p-0 m-0">
 
-  <!-- HEADER BRANDING -->
-  <header class="header-gradient text-white shadow-xl border-b-2 border-pink-400 py-1.5 px-4 flex-shrink-0">
-    <div class="max-w-[1850px] mx-auto flex items-center justify-between gap-2">
+  <!-- HEADER BRANDING (DIPERBESAR & LEBIH JELAS) -->
+  <header class="header-gradient text-white shadow-2xl border-b-2 border-pink-400 py-2.5 px-6 flex-shrink-0">
+    <div class="max-w-[1920px] mx-auto flex items-center justify-between gap-4">
       
-      <!-- LOGO KIRI -->
-      <div class="flex-shrink-0">
+      <!-- SISI KIRI: LOGO KIRI & LIVE CLOCK REAL-TIME -->
+      <div class="flex items-center gap-4 flex-shrink-0">
         <img src="https://lh3.googleusercontent.com/d/1Hrwrv_NmmmPfOz8jF-S1PqVpnfh5iVF2" 
              alt="Logo Kiri" 
-             class="h-14 md:h-16 w-auto object-contain drop-shadow-[0_0_10px_rgba(255,255,255,0.4)]">
-      </div>
-
-      <!-- JUDUL & PROMOSI (GAYA GAMBAR ACUAN) -->
-      <div class="text-center flex-1">
-        <div class="flex items-center justify-center gap-2">
-          <span class="inline-flex items-center gap-1 bg-pink-600 text-white text-[10px] md:text-xs px-2 py-0.5 rounded-full font-black tracking-wider uppercase shadow-sm">
-            <span class="w-2 h-2 rounded-full bg-white animate-ping"></span> LIVE
-          </span>
-          <h1 class="text-xl md:text-3xl font-black tracking-wider text-white uppercase drop-shadow">
-            RANK LKBB LASKAR 9
-          </h1>
-        </div>
+             class="h-16 md:h-20 w-auto object-contain drop-shadow-[0_0_12px_rgba(255,255,255,0.5)]">
         
-        <!-- SUBHEADER REKAP BY REKAP ANDALAN -->
-        <div class="mt-0.5 flex items-center justify-center gap-2 text-[11px] md:text-xs font-bold text-blue-100">
-          <span class="h-[1px] w-8 md:w-16 bg-blue-300/40"></span>
-          <span>REKAP BY <strong class="text-white uppercase tracking-wider">REKAP ANDALAN</strong></span>
-          <span class="hidden md:inline">|</span>
-          <span class="hidden md:flex items-center gap-1 text-pink-200">
-            <i class="fab fa-instagram"></i> Tjobrut.store | cosmoatribut
+        <!-- POSISI LIVE BERLALUAN DENGAN LAST UPDATE -->
+        <div class="flex items-center gap-2 bg-pink-950/80 px-3 py-1.5 rounded-xl border border-pink-400/50 shadow-md">
+          <span class="relative flex h-2.5 w-2.5">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-pink-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-pink-500"></span>
           </span>
-          <span class="hidden md:inline">|</span>
-          <span class="hidden md:flex items-center gap-1 text-green-300">
-            <i class="fab fa-whatsapp"></i> 0896-9402-4600
+          <div class="flex flex-col">
+            <span class="text-[9px] text-pink-300 font-black tracking-widest uppercase leading-none">STATUS LIVE</span>
+            <span id="live-realtime-clock" class="text-xs md:text-sm font-black text-white leading-tight">00:00:00 WIB</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- SISI TENGAH: JUDUL & REKAP BY REKAP ANDALAN -->
+      <div class="text-center flex-1">
+        <h1 class="text-2xl md:text-4xl font-black tracking-wider text-white uppercase drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)]">
+          RANK LKBB LASKAR 9
+        </h1>
+        
+        <div class="mt-1 flex items-center justify-center gap-2 text-xs md:text-sm font-bold text-blue-100">
+          <span class="h-[1px] w-8 md:w-16 bg-blue-300/40"></span>
+          <span>REKAP BY <strong class="text-white font-extrabold uppercase tracking-wider">REKAP ANDALAN</strong></span>
+          <span class="hidden md:inline text-blue-300/50">|</span>
+          <span class="hidden md:flex items-center gap-1 text-pink-200">
+            <i class="fab fa-instagram text-pink-300"></i> Tjobrut.store | cosmoatribut
+          </span>
+          <span class="hidden md:inline text-blue-300/50">|</span>
+          <span class="hidden md:flex items-center gap-1 text-emerald-300">
+            <i class="fab fa-whatsapp text-emerald-300"></i> 0896-9402-4600
           </span>
           <span class="h-[1px] w-8 md:w-16 bg-blue-300/40"></span>
         </div>
       </div>
 
-      <!-- LOGO KANAN & LAST UPDATE -->
-      <div class="flex items-center gap-3 flex-shrink-0">
-        <div class="hidden sm:flex flex-col items-end bg-blue-950/60 px-3 py-1 rounded-xl border border-blue-400/30 text-right">
-          <span class="text-[9px] text-blue-200 uppercase tracking-widest font-bold flex items-center gap-1">
+      <!-- SISI KANAN: LAST UPDATE & LOGO KANAN -->
+      <div class="flex items-center gap-4 flex-shrink-0">
+        <!-- LAST UPDATE HANYA BERUBAH JIKA POSISI/NILAI BERUBAH -->
+        <div class="flex flex-col items-end bg-blue-950/70 px-3.5 py-1.5 rounded-xl border border-blue-400/40 shadow-md text-right">
+          <span class="text-[9px] text-blue-200 uppercase tracking-widest font-black flex items-center gap-1 leading-none">
             <i class="fa-regular fa-clock"></i> LAST UPDATE
           </span>
-          <span id="live-clock" class="text-xs md:text-sm font-black text-white">00:00:00 WIB</span>
+          <span id="last-update-clock" class="text-xs md:text-sm font-black text-amber-300 leading-tight">--:--:-- WIB</span>
         </div>
 
         <img src="https://lh3.googleusercontent.com/d/1UHSI3CLB0YCZ7uQ3O0sVIGMrVeK7qrK0" 
              alt="Logo Kanan" 
-             class="h-16 md:h-20 w-auto object-contain drop-shadow-[0_0_10px_rgba(255,255,255,0.4)]">
+             class="h-16 md:h-20 w-auto object-contain drop-shadow-[0_0_12px_rgba(255,255,255,0.5)]">
       </div>
     </div>
   </header>
 
-  <!-- KONTEN UTAMA: 3 KOTAK TINGKATAN BERSISIAN -->
-  <main class="flex-1 px-3 py-2 overflow-hidden max-w-[1850px] w-full mx-auto flex flex-col">
+  <!-- KONTEN UTAMA: 3 KOTAK TINGKATAN BERSISIAN (PROPORSI PENUH MEMENUHI LAYAR) -->
+  <main class="flex-1 px-3 py-2 overflow-hidden max-w-[1920px] w-full mx-auto flex flex-col justify-between">
     <div class="grid grid-cols-1 md:grid-cols-3 gap-3 h-full items-stretch">
       
       <!-- KATEGORI 1: PURNA / MANAGEMENT -->
-      <div class="bg-white border-2 border-pink-400 rounded-2xl shadow-lg flex flex-col overflow-hidden">
-        <div class="bg-gradient-to-r from-pink-600 to-rose-500 text-white font-black text-center py-1.5 px-3 text-xs md:text-sm tracking-wider uppercase shadow flex items-center justify-center gap-2">
-          <i class="fa-solid fa-users text-sm"></i> PURNA / MANAGEMENT
+      <div class="bg-white border-2 border-pink-400 rounded-2xl shadow-xl flex flex-col overflow-hidden h-full">
+        <div class="bg-gradient-to-r from-pink-600 to-rose-500 text-white font-black text-center py-1.5 px-3 text-sm md:text-base tracking-wider uppercase shadow flex items-center justify-center">
+          PURNA / MANAGEMENT
         </div>
-        <div class="flex-1 p-1.5 flex flex-col justify-between overflow-hidden" id="card-purna">
+        <div class="flex-1 p-2 flex flex-col justify-between overflow-hidden" id="card-purna">
           <!-- Render via JS -->
         </div>
       </div>
 
       <!-- KATEGORI 2: SMP / MTs -->
-      <div class="bg-white border-2 border-blue-400 rounded-2xl shadow-lg flex flex-col overflow-hidden">
-        <div class="bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-black text-center py-1.5 px-3 text-xs md:text-sm tracking-wider uppercase shadow flex items-center justify-center gap-2">
-          <i class="fa-solid fa-graduation-cap text-sm"></i> SMP / MTs
+      <div class="bg-white border-2 border-blue-400 rounded-2xl shadow-xl flex flex-col overflow-hidden h-full">
+        <div class="bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-black text-center py-1.5 px-3 text-sm md:text-base tracking-wider uppercase shadow flex items-center justify-center">
+          SMP / MTs
         </div>
-        <div class="flex-1 p-1.5 flex flex-col justify-between overflow-hidden" id="card-smp">
+        <div class="flex-1 p-2 flex flex-col justify-between overflow-hidden" id="card-smp">
           <!-- Render via JS -->
         </div>
       </div>
 
       <!-- KATEGORI 3: SMA / SMK / MA -->
-      <div class="bg-white border-2 border-pink-400 rounded-2xl shadow-lg flex flex-col overflow-hidden">
-        <div class="bg-gradient-to-r from-pink-600 to-purple-600 text-white font-black text-center py-1.5 px-3 text-xs md:text-sm tracking-wider uppercase shadow flex items-center justify-center gap-2">
-          <i class="fa-solid fa-graduation-cap text-sm"></i> SMA / SMK / MA
+      <div class="bg-white border-2 border-pink-400 rounded-2xl shadow-xl flex flex-col overflow-hidden h-full">
+        <div class="bg-gradient-to-r from-pink-600 to-purple-600 text-white font-black text-center py-1.5 px-3 text-sm md:text-base tracking-wider uppercase shadow flex items-center justify-center">
+          SMA / SMK / MA
         </div>
-        <div class="flex-1 p-1.5 flex flex-col justify-between overflow-hidden" id="card-sma">
+        <div class="flex-1 p-2 flex flex-col justify-between overflow-hidden" id="card-sma">
           <!-- Render via JS -->
         </div>
       </div>
@@ -145,59 +159,73 @@
     </div>
   </main>
 
-  <!-- FOOTER BAR -->
-  <footer class="bg-gradient-to-r from-blue-900 via-pink-700 to-blue-900 text-white text-[10px] md:text-xs font-black py-1 px-4 text-center border-t border-pink-400/40 flex-shrink-0 flex items-center justify-center gap-3 tracking-widest uppercase shadow-md">
-    <span class="h-[1px] w-12 bg-white/30"></span>
-    <span>DISIPLIN &bull; TANGGUH &bull; BERPRESTASI</span>
-    <span class="h-[1px] w-12 bg-white/30"></span>
-  </footer>
-
   <!-- JAVASCRIPT LOGIC -->
   <script>
     const GAS_API_URL = "https://script.google.com/macros/s/AKfycbwGdIdN41HgOWlP6YnWfaS2HcONT7JHYaLQ-8a9uouYSjTiYnvzCXa8NCRdn59EkE1h/exec";
 
     let liveData = { purna: [], smp: [], sma: [] };
-    let previousTop3State = { purna: "", smp: "", sma: "" };
+    let previousRanks = { purna: {}, smp: {}, sma: {} };
+    let previousFullSignature = { purna: "", smp: "", sma: "" };
 
     const tabLimits = { purna: 10, smp: 29, sma: 26 };
 
-    // Update Jam Real-time
-    function updateClock() {
+    // 1. JAM LIVE REAL-TIME (BERJALAN TIAP DETIK)
+    function updateLiveRealtimeClock() {
       const now = new Date();
       const timeString = now.toLocaleTimeString('id-ID', { hour12: false });
-      document.getElementById('live-clock').innerText = `${timeString} WIB`;
+      document.getElementById('live-realtime-clock').innerText = `${timeString} WIB`;
     }
-    setInterval(updateClock, 1000);
-    updateClock();
+    setInterval(updateLiveRealtimeClock, 1000);
+    updateLiveRealtimeClock();
 
     async function fetchData() {
       try {
         const response = await fetch(GAS_API_URL);
         const data = await response.json();
-        liveData = data;
         
-        checkConfettiTrigger();
+        let hasChanged = false;
+
+        // Cek perubahan data/posisi rank
+        ['purna', 'smp', 'sma'].forEach(cat => {
+          const maxLimit = tabLimits[cat];
+          const rawItems = (data[cat] || []).slice(0, maxLimit);
+          const currentSignature = rawItems.map(item => `${item.rank}:${item.totalNilai}:${item.pbb}`).join('|');
+
+          if (previousFullSignature[cat] !== currentSignature) {
+            hasChanged = true;
+          }
+        });
+
+        // Update LAST UPDATE HANYA jika ada pergeseran/perubahan nilai
+        if (hasChanged || document.getElementById('last-update-clock').innerText.includes('--')) {
+          const now = new Date();
+          document.getElementById('last-update-clock').innerText = `${now.toLocaleTimeString('id-ID', { hour12: false })} WIB`;
+        }
+
+        checkConfettiTrigger(data);
+        liveData = data;
         renderAllCategories();
+
       } catch (error) {
         console.error("Gagal mengambil data:", error);
       }
     }
 
     // Deteksi Perubahan Top 3 untuk Kembang Api
-    function checkConfettiTrigger() {
+    function checkConfettiTrigger(newData) {
       ['purna', 'smp', 'sma'].forEach(cat => {
         const maxLimit = tabLimits[cat];
-        const rawItems = (liveData[cat] || []).slice(0, maxLimit);
+        const rawItems = (newData[cat] || []).slice(0, maxLimit);
         const top3 = rawItems.slice(0, 3);
         const currentSignature = top3.map(item => `${item.rank}:${item.totalNilai}`).join('|');
 
-        if (previousTop3State[cat] && previousTop3State[cat] !== currentSignature) {
+        if (previousFullSignature[cat] && previousFullSignature[cat] !== currentSignature) {
           const hasScores = top3.some(item => item.totalNilai > 0);
           if (hasScores) {
             triggerConfetti();
           }
         }
-        previousTop3State[cat] = currentSignature;
+        previousFullSignature[cat] = currentSignature;
       });
     }
 
@@ -218,7 +246,7 @@
       }, 250);
     }
 
-    // Render Semua Kategori Sesuai Layout Gambar Acuan
+    // Render Semua Kategori Sesuai Proporsi Penuh Layar
     function renderAllCategories() {
       ['purna', 'smp', 'sma'].forEach(cat => {
         const container = document.getElementById(`card-${cat}`);
@@ -234,17 +262,16 @@
 
         // Ambil Top 3 untuk Podium Cards
         const top3 = items.slice(0, 3);
-        // Sisanya untuk Tabel Split 2 Kolom
         const remainingItems = items.slice(3);
 
-        // --- 1. PODIUM TOP 3 CARDS ---
+        // --- 1. CARD JUARA UTAMA 1, 2, 3 (LEBIH RINGKAS & TIDAK TERLALU LEBAR) ---
         const podiumWrapper = document.createElement('div');
-        podiumWrapper.className = "grid grid-cols-3 gap-1 mb-1.5 flex-shrink-0";
+        podiumWrapper.className = "grid grid-cols-3 gap-1.5 mb-2 flex-shrink-0";
 
         const podiumConfig = [
-          { bg: 'bg-amber-50/90 border-amber-300', medalBg: 'bg-gradient-to-tr from-amber-500 to-yellow-300 text-slate-900', num: '1', titleColor: 'text-amber-800' },
-          { bg: 'bg-slate-50/90 border-slate-300', medalBg: 'bg-gradient-to-tr from-slate-400 to-slate-200 text-slate-900', num: '2', titleColor: 'text-slate-700' },
-          { bg: 'bg-orange-50/90 border-orange-300', medalBg: 'bg-gradient-to-tr from-amber-700 to-orange-400 text-white', num: '3', titleColor: 'text-orange-900' }
+          { bg: 'bg-amber-50 border-amber-300', medalBg: 'bg-amber-500 text-white', num: '1', titleColor: 'text-amber-900' },
+          { bg: 'bg-slate-50 border-slate-300', medalBg: 'bg-slate-400 text-white', num: '2', titleColor: 'text-slate-800' },
+          { bg: 'bg-orange-50 border-orange-300', medalBg: 'bg-amber-700 text-white', num: '3', titleColor: 'text-orange-950' }
         ];
 
         let podiumHtml = '';
@@ -255,27 +282,27 @@
           // Badge GF khusus Juara Utama di SMP & SMA
           let gfBadge = '';
           if (cat === 'smp' || cat === 'sma') {
-            gfBadge = `<span class="inline-flex items-center gap-0.5 text-[8px] px-1 py-0.2 rounded bg-amber-100 border border-amber-300 text-amber-900 font-black animate-glow ml-1">
+            gfBadge = `<span class="inline-flex items-center gap-0.5 text-[8px] px-1 py-0.2 rounded bg-amber-200 border border-amber-400 text-amber-950 font-black animate-glow">
               <i class="fa-solid fa-trophy text-amber-600"></i> GF
             </span>`;
           }
 
           podiumHtml += `
-            <div class="${cfg.bg} border rounded-xl p-1 flex items-center justify-between shadow-xs">
-              <div class="flex items-center gap-1 min-w-0">
-                <div class="w-6 h-6 rounded-full ${cfg.medalBg} font-black text-[11px] flex items-center justify-center shadow-xs flex-shrink-0">
+            <div class="${cfg.bg} border rounded-xl p-1.5 flex items-center justify-between shadow-xs min-h-[42px]">
+              <div class="flex items-center gap-1.5 min-w-0">
+                <div class="w-5 h-5 rounded-full ${cfg.medalBg} font-black text-[10px] flex items-center justify-center shadow-xs flex-shrink-0">
                   ${cfg.num}
                 </div>
-                <div class="truncate">
-                  <div class="text-[9px] font-black ${cfg.titleColor} leading-tight truncate flex items-center">
+                <div class="truncate leading-tight">
+                  <div class="text-[9px] font-black ${cfg.titleColor} truncate">
                     ${item.rank || `UTAMA ${i+1}`}
                   </div>
                   ${gfBadge}
                 </div>
               </div>
               <div class="text-right flex-shrink-0 pl-1">
-                <div class="text-[11px] font-black text-blue-700 leading-tight">${item.totalNilai}</div>
-                <div class="text-[9px] font-bold text-pink-600 leading-tight">PBB: ${item.pbb}</div>
+                <div class="text-[11px] font-black text-blue-700 leading-none">${item.totalNilai}</div>
+                <div class="text-[8px] font-bold text-pink-600 leading-none mt-0.5">PBB: ${item.pbb}</div>
               </div>
             </div>
           `;
@@ -283,41 +310,68 @@
         podiumWrapper.innerHTML = podiumHtml;
         container.appendChild(podiumWrapper);
 
-        // --- 2. SUB-TABEL SPLIT 2 KOLOM ---
+        // --- 2. TABEL PROPORSI PENUH LAYAR (JARAK DEKAT & SEGITIGA PERPINDAHAN RANK) ---
         const mid = Math.ceil(remainingItems.length / 2);
         const leftList = remainingItems.slice(0, mid);
         const rightList = remainingItems.slice(mid);
 
         const tablesGrid = document.createElement('div');
-        tablesGrid.className = "grid grid-cols-2 gap-1.5 flex-1 items-start overflow-hidden";
+        tablesGrid.className = "grid grid-cols-2 gap-2 flex-1 items-stretch overflow-hidden";
 
         const isPinkHeader = cat === 'purna' || cat === 'sma';
         const headerBg = isPinkHeader ? 'bg-pink-600' : 'bg-blue-600';
 
-        function buildSubTable(dataList) {
-          if (dataList.length === 0) return `<div class="h-full bg-slate-50 rounded-lg"></div>`;
+        function buildSubTable(dataList, startIndex) {
+          if (dataList.length === 0) return `<div class="h-full bg-slate-50 rounded-xl border border-slate-100"></div>`;
 
-          const rows = dataList.map((item, idx) => `
-            <tr class="bg-white hover:bg-slate-50 border-b border-slate-100 text-[9px] leading-tight">
-              <td class="py-[1.5px] px-1 text-center font-bold text-slate-500 w-5">${item.no || '-'}</td>
-              <td class="py-[1.5px] px-1 font-extrabold text-slate-800 truncate">${item.rank || '-'}</td>
-              <td class="py-[1.5px] px-1 text-center font-black text-blue-700 w-7">${item.totalNilai}</td>
-              <td class="py-[1.5px] px-1 text-center font-bold text-pink-600 w-6">${item.pbb}</td>
-            </tr>
-          `).join('');
+          const rows = dataList.map((item, idx) => {
+            const actualIndex = startIndex + idx;
+            const itemKey = item.rank || `row-${actualIndex}`;
+
+            // Hitung Perubahan Posisi Rank (Segitiga Merah/Hijau Berpendar)
+            let arrowIndicator = "";
+            if (previousRanks[cat] && previousRanks[cat][itemKey] !== undefined) {
+              const prevIdx = previousRanks[cat][itemKey];
+              if (actualIndex < prevIdx) {
+                // Posisi Naik (Segitiga Hijau)
+                arrowIndicator = `<span class="text-emerald-500 font-black text-[10px] ml-1 animate-glow glow-green">▲</span>`;
+              } else if (actualIndex > prevIdx) {
+                // Posisi Turun (Segitiga Merah)
+                arrowIndicator = `<span class="text-rose-500 font-black text-[10px] ml-1 animate-glow glow-red">▼</span>`;
+              }
+            }
+
+            // Simpan posisi terbaru
+            if (!previousRanks[cat]) previousRanks[cat] = {};
+            previousRanks[cat][itemKey] = actualIndex;
+
+            return `
+              <tr class="bg-white hover:bg-slate-50 border-b border-slate-100 text-[10px] md:text-[11px] leading-tight">
+                <td class="py-1 px-1.5 text-center font-bold text-slate-400 w-6">${item.no || (actualIndex + 4)}</td>
+                <td class="py-1 px-1.5 font-extrabold text-slate-800 truncate">
+                  <div class="flex items-center">
+                    <span class="truncate">${item.rank || '-'}</span>
+                    ${arrowIndicator}
+                  </div>
+                </td>
+                <td class="py-1 px-1.5 text-center font-black text-blue-700 w-10">${item.totalNilai}</td>
+                <td class="py-1 px-1.5 text-center font-bold text-pink-600 w-9">${item.pbb}</td>
+              </tr>
+            `;
+          }).join('');
 
           return `
-            <div class="border border-slate-200 rounded-lg overflow-hidden shadow-2xs h-full">
-              <table class="w-full text-left border-collapse">
+            <div class="border border-slate-200 rounded-xl overflow-hidden shadow-xs h-full flex flex-col justify-between bg-white">
+              <table class="w-full text-left border-collapse h-full">
                 <thead>
-                  <tr class="${headerBg} text-white text-[8px] font-black uppercase tracking-wider">
-                    <th class="py-1 px-1 text-center w-5">#</th>
-                    <th class="py-1 px-1">RANK</th>
-                    <th class="py-1 px-1 text-center w-7">TOT</th>
-                    <th class="py-1 px-1 text-center w-6">PBB</th>
+                  <tr class="${headerBg} text-white text-[9px] md:text-[10px] font-black uppercase tracking-wider">
+                    <th class="py-1 px-1.5 text-center w-6">#</th>
+                    <th class="py-1 px-1.5">RANK</th>
+                    <th class="py-1 px-1.5 text-center w-10">TOT</th>
+                    <th class="py-1 px-1.5 text-center w-9">PBB</th>
                   </tr>
                 </thead>
-                <tbody class="divide-y divide-slate-100">
+                <tbody class="divide-y divide-slate-100 flex-1">
                   ${rows}
                 </tbody>
               </table>
@@ -325,14 +379,14 @@
           `;
         }
 
-        tablesGrid.innerHTML = buildSubTable(leftList) + buildSubTable(rightList);
+        tablesGrid.innerHTML = buildSubTable(leftList, 0) + buildSubTable(rightList, leftList.length);
         container.appendChild(tablesGrid);
       });
     }
 
     // Inisialisasi
     fetchData();
-    setInterval(fetchData, 5000); // Auto-refresh 5 detik
+    setInterval(fetchData, 5000); // Auto-refresh data 5 detik
   </script>
 </body>
 </html>
