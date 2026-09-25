@@ -32,7 +32,6 @@
       background-color: #0b1120;
     }
     
-    /* Scrollbar hanya aktif untuk container HP */
     @media (min-width: 768px) {
       html, body {
         overflow: hidden;
@@ -85,60 +84,106 @@
 
   <!-- HEADER BRANDING -->
   <header class="header-gradient text-white shadow-2xl border-b-2 border-pink-400 py-2 px-3 md:px-6 flex-shrink-0">
-    <div class="max-w-[1920px] mx-auto flex items-center justify-between gap-2 md:gap-4">
+    <div class="max-w-[1920px] mx-auto">
       
-      <!-- SISI KIRI: LOGO KIRI & STATUS LIVE CLOCK -->
-      <div class="flex items-center gap-2 md:gap-4 flex-shrink-0">
-        <img src="https://lh3.googleusercontent.com/d/1Hrwrv_NmmmPfOz8jF-S1PqVpnfh5iVF2=s1000" 
-             alt="Logo Kiri" 
-             class="h-12 md:h-20 w-auto object-contain drop-shadow-[0_0_12px_rgba(255,255,255,0.5)]">
-        
-        <div class="flex items-center gap-1.5 md:gap-2 bg-pink-950/80 px-2 md:px-3 py-1 md:py-1.5 rounded-xl border border-pink-400/50 shadow-md">
-          <span class="relative flex h-2 w-2 md:h-2.5 md:w-2.5">
-            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-pink-400 opacity-75"></span>
-            <span class="relative inline-flex rounded-full h-2 w-2 md:h-2.5 md:w-2.5 bg-pink-500"></span>
-          </span>
-          <div class="flex flex-col">
-            <span class="text-[8px] md:text-[9px] text-pink-300 font-black tracking-widest uppercase leading-none">LIVE</span>
-            <span id="live-realtime-clock" class="text-[10px] md:text-sm font-black text-white leading-tight">00:00:00</span>
+      <!-- TAMPILAN PC / DESKTOP (AKAN AKTIF DI MD KE ATAS) -->
+      <div class="hidden md:flex items-center justify-between gap-4">
+        <!-- SISI KIRI PC -->
+        <div class="flex items-center gap-4 flex-shrink-0">
+          <img src="https://lh3.googleusercontent.com/d/1Hrwrv_NmmmPfOz8jF-S1PqVpnfh5iVF2=s1000" 
+               alt="Logo Kiri" 
+               class="h-20 w-auto object-contain drop-shadow-[0_0_12px_rgba(255,255,255,0.5)]">
+          
+          <div class="flex items-center gap-2 bg-pink-950/80 px-3 py-1.5 rounded-xl border border-pink-400/50 shadow-md">
+            <span class="relative flex h-2.5 w-2.5">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-pink-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-pink-500"></span>
+            </span>
+            <div class="flex flex-col">
+              <span class="text-[9px] text-pink-300 font-black tracking-widest uppercase leading-none">STATUS LIVE</span>
+              <span id="live-realtime-clock" class="text-sm font-black text-white leading-tight">00:00:00 WIB</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- SISI TENGAH PC -->
+        <div class="text-center flex-1">
+          <h1 class="text-4xl font-black tracking-wider text-white uppercase drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)]">
+            LIVERANK LKBB LASKAR 9
+          </h1>
+          
+          <div class="mt-1 flex items-center justify-center gap-2 text-sm font-bold text-blue-100">
+            <span class="h-[1px] w-16 bg-blue-300/40"></span>
+            <span>REKAP BY <strong class="text-white font-extrabold uppercase tracking-wider">REKAP ANDALAN</strong></span>
+            <span class="text-blue-300/50">|</span>
+            <span class="flex items-center gap-1 text-pink-200">
+              <i class="fab fa-instagram text-pink-300"></i> Tjobrut.store | cosmoatribut
+            </span>
+            <span class="text-blue-300/50">|</span>
+            <span class="flex items-center gap-1 text-emerald-300">
+              <i class="fab fa-whatsapp text-emerald-300"></i> 0896-9402-4600
+            </span>
+            <span class="h-[1px] w-16 bg-blue-300/40"></span>
+          </div>
+        </div>
+
+        <!-- SISI KANAN PC -->
+        <div class="flex items-center gap-4 flex-shrink-0">
+          <div class="flex flex-col items-end bg-blue-950/70 px-3.5 py-1.5 rounded-xl border border-blue-400/40 shadow-md text-right">
+            <span class="text-[9px] text-blue-200 uppercase tracking-widest font-black flex items-center gap-1 leading-none">
+              <i class="fa-regular fa-clock"></i> LAST UPDATE
+            </span>
+            <span id="last-update-clock" class="text-sm font-black text-amber-300 leading-tight">--:--:-- WIB</span>
+          </div>
+
+          <img src="https://lh3.googleusercontent.com/d/1UHSI3CLB0YCZ7uQ3O0sVIGMrVeK7qrK0=s1000" 
+               alt="Logo Rekap Andalan" 
+               class="h-28 w-auto object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.7)]">
+        </div>
+      </div>
+
+      <!-- TAMPILAN KHUSUS HP / MOBILE (< MD) -->
+      <div class="flex md:hidden flex-col gap-1.5">
+        <!-- BARIS 1 HP: LOGO KIRI - JUDUL - LOGO KANAN -->
+        <div class="flex items-center justify-between gap-2">
+          <img src="https://lh3.googleusercontent.com/d/1Hrwrv_NmmmPfOz8jF-S1PqVpnfh5iVF2=s1000" 
+               alt="Logo Kiri" 
+               class="h-11 w-auto object-contain flex-shrink-0">
+          
+          <div class="text-center flex-1 min-w-0">
+            <h1 class="text-base sm:text-lg font-black tracking-wider text-white uppercase leading-tight drop-shadow truncate">
+              LIVERANK LKBB LASKAR 9
+            </h1>
+            <div class="text-[9px] font-extrabold text-blue-100 uppercase tracking-widest">
+              REKAP BY <strong class="text-white">REKAP ANDALAN</strong>
+            </div>
+          </div>
+
+          <img src="https://lh3.googleusercontent.com/d/1UHSI3CLB0YCZ7uQ3O0sVIGMrVeK7qrK0=s1000" 
+               alt="Logo Rekap Andalan" 
+               class="h-12 w-auto object-contain flex-shrink-0">
+        </div>
+
+        <!-- BARIS 2 HP: JAM LIVE (KIRI) DAN LAST UPDATE (KANAN) DALAM 1 BARIS -->
+        <div class="flex items-center justify-between gap-2 bg-slate-950/60 p-1.5 px-3 rounded-xl border border-white/10">
+          <!-- LIVE REALTIME LEFT -->
+          <div class="flex items-center gap-1.5">
+            <span class="relative flex h-2 w-2">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-pink-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-pink-500"></span>
+            </span>
+            <span class="text-[9px] text-pink-300 font-black">LIVE:</span>
+            <span id="mob-live-clock" class="text-[11px] font-black text-white">00:00:00 WIB</span>
+          </div>
+
+          <!-- LAST UPDATE RIGHT -->
+          <div class="flex items-center gap-1.5">
+            <span class="text-[9px] text-blue-300 font-black">UPDATE:</span>
+            <span id="mob-update-clock" class="text-[11px] font-black text-amber-300">--:--:-- WIB</span>
           </div>
         </div>
       </div>
 
-      <!-- SISI TENGAH: JUDUL LIVERANK LKBB LASKAR 9 -->
-      <div class="text-center flex-1 min-w-0">
-        <h1 class="text-base sm:text-2xl md:text-4xl font-black tracking-wider text-white uppercase drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)] truncate">
-          LIVERANK LKBB LASKAR 9
-        </h1>
-        
-        <div class="mt-0.5 md:mt-1 flex items-center justify-center gap-1.5 md:gap-2 text-[10px] md:text-sm font-bold text-blue-100">
-          <span class="hidden sm:inline-block h-[1px] w-6 md:w-16 bg-blue-300/40"></span>
-          <span class="truncate">REKAP BY <strong class="text-white font-extrabold uppercase tracking-wider">REKAP ANDALAN</strong></span>
-          <span class="hidden md:inline text-blue-300/50">|</span>
-          <span class="hidden md:flex items-center gap-1 text-pink-200">
-            <i class="fab fa-instagram text-pink-300"></i> Tjobrut.store | cosmoatribut
-          </span>
-          <span class="hidden md:inline text-blue-300/50">|</span>
-          <span class="hidden md:flex items-center gap-1 text-emerald-300">
-            <i class="fab fa-whatsapp text-emerald-300"></i> 0896-9402-4600
-          </span>
-          <span class="hidden sm:inline-block h-[1px] w-6 md:w-16 bg-blue-300/40"></span>
-        </div>
-      </div>
-
-      <!-- SISI KANAN: LAST UPDATE & LOGO KANAN -->
-      <div class="flex items-center gap-2 md:gap-4 flex-shrink-0">
-        <div class="flex flex-col items-end bg-blue-950/70 px-2 md:px-3.5 py-1 md:py-1.5 rounded-xl border border-blue-400/40 shadow-md text-right">
-          <span class="text-[8px] md:text-[9px] text-blue-200 uppercase tracking-widest font-black flex items-center gap-1 leading-none">
-            <i class="fa-regular fa-clock"></i> UPDATE
-          </span>
-          <span id="last-update-clock" class="text-[10px] md:text-sm font-black text-amber-300 leading-tight">--:--:--</span>
-        </div>
-
-        <img src="https://lh3.googleusercontent.com/d/1UHSI3CLB0YCZ7uQ3O0sVIGMrVeK7qrK0=s1000" 
-             alt="Logo Rekap Andalan" 
-             class="h-14 md:h-28 w-auto object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.7)]">
-      </div>
     </div>
   </header>
 
@@ -207,11 +252,11 @@
     let liveData = { purna: [], smp: [], sma: [] };
     let previousRanks = { purna: {}, smp: {}, sma: {} };
     let previousFullSignature = { purna: "", smp: "", sma: "" };
-    let activeMobileTab = 'smp'; // Default active tab di HP
+    let activeMobileTab = 'smp';
 
     const tabLimits = { purna: 10, smp: 29, sma: 26 };
 
-    // Buka Tab HP
+    // Tab Controller HP
     function setMobileTab(tabKey) {
       activeMobileTab = tabKey;
       updateMobileTabUI();
@@ -234,11 +279,7 @@
 
         if (col) {
           if (isMobile) {
-            if (cat === activeMobileTab) {
-              col.style.display = 'flex';
-            } else {
-              col.style.display = 'none';
-            }
+            col.style.display = (cat === activeMobileTab) ? 'flex' : 'none';
           } else {
             col.style.display = 'flex';
           }
@@ -248,11 +289,17 @@
 
     window.addEventListener('resize', updateMobileTabUI);
 
-    // Jam Realtime
+    // Update Jam Realtime (PC & HP)
     function updateLiveRealtimeClock() {
       const now = new Date();
       const timeString = now.toLocaleTimeString('id-ID', { hour12: false });
-      document.getElementById('live-realtime-clock').innerText = `${timeString} WIB`;
+      const fullText = `${timeString} WIB`;
+
+      const pcClock = document.getElementById('live-realtime-clock');
+      const mobClock = document.getElementById('mob-live-clock');
+
+      if (pcClock) pcClock.innerText = fullText;
+      if (mobClock) mobClock.innerText = fullText;
     }
     setInterval(updateLiveRealtimeClock, 1000);
     updateLiveRealtimeClock();
@@ -274,9 +321,15 @@
           }
         });
 
-        if (hasChanged || document.getElementById('last-update-clock').innerText.includes('--')) {
+        // Update Last Update Clock (PC & HP) HANYA saat data berubah
+        const pcLastClock = document.getElementById('last-update-clock');
+        if (hasChanged || (pcLastClock && pcLastClock.innerText.includes('--'))) {
           const now = new Date();
-          document.getElementById('last-update-clock').innerText = `${now.toLocaleTimeString('id-ID', { hour12: false })} WIB`;
+          const timeStr = `${now.toLocaleTimeString('id-ID', { hour12: false })} WIB`;
+          
+          if (pcLastClock) pcLastClock.innerText = timeStr;
+          const mobLastClock = document.getElementById('mob-update-clock');
+          if (mobLastClock) mobLastClock.innerText = timeStr;
         }
 
         checkConfettiTrigger(data);
@@ -322,96 +375,97 @@
       }, 250);
     }
 
-    // SVG Rosette Badge (Diperbesar)
+    // SVG Rosette Badge (Menggunakan Unik ID per Render agar Gradien TIDAK HILANG / BERGARIS di HP)
     function getRosetteBadge(num) {
+      const u = Math.floor(Math.random() * 10000000);
       if (num === 1) {
         return `
-          <svg class="w-11 h-14 drop-shadow-lg overflow-visible flex-shrink-0" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M28 70 L28 118 L50 100 L72 118 L72 70 Z" fill="url(#goldRibbon)" stroke="#78350f" stroke-width="2"/>
-            <circle cx="50" cy="50" r="46" fill="url(#goldOuter)" stroke="#b45309" stroke-width="2.5"/>
+          <svg class="w-11 h-14 drop-shadow-lg overflow-visible flex-shrink-0" viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="goldOuter_${u}" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#fef08a"/>
+                <stop offset="50%" stop-color="#f59e0b"/>
+                <stop offset="100%" stop-color="#b45309"/>
+              </linearGradient>
+              <linearGradient id="goldInner_${u}" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#fffbeb"/>
+                <stop offset="50%" stop-color="#fde047"/>
+                <stop offset="100%" stop-color="#ca8a04"/>
+              </linearGradient>
+              <linearGradient id="goldRibbon_${u}" x1="0" y1="0" x2="0" y2="120" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#f59e0b"/>
+                <stop offset="100%" stop-color="#78350f"/>
+              </linearGradient>
+            </defs>
+            <path d="M28 70 L28 118 L50 100 L72 118 L72 70 Z" fill="url(#goldRibbon_${u})" stroke="#78350f" stroke-width="2"/>
+            <circle cx="50" cy="50" r="46" fill="url(#goldOuter_${u})" stroke="#b45309" stroke-width="2.5"/>
             <circle cx="50" cy="50" r="40" stroke="#fef08a" stroke-width="2" stroke-dasharray="4 2"/>
-            <circle cx="50" cy="50" r="34" fill="url(#goldInner)" stroke="#a16207" stroke-width="2"/>
+            <circle cx="50" cy="50" r="34" fill="url(#goldInner_${u})" stroke="#a16207" stroke-width="2"/>
             <circle cx="50" cy="50" r="27" stroke="#854d0e" stroke-width="1.2" stroke-dasharray="3 3" fill="none"/>
             <path d="M43 27 L44 29 L46 29 L44.5 30.5 L45 32.5 L43 31 L41 32.5 L41.5 30.5 L40 29 L42 29 Z" fill="#854d0e"/>
             <path d="M50 24 L51.5 26.5 L54 26.5 L52 28 L53 30.5 L50 29 L47 30.5 L48 28 L46 26.5 L48.5 26.5 Z" fill="#854d0e"/>
             <path d="M57 27 L58 29 L60 29 L58.5 30.5 L59 32.5 L57 31 L55 32.5 L55.5 30.5 L54 29 L56 29 Z" fill="#854d0e"/>
             <text x="50" y="61" font-family="Poppins, sans-serif" font-size="32" font-weight="900" fill="#713f12" text-anchor="middle">1</text>
-            <defs>
-              <linearGradient id="goldOuter" x1="0" y1="0" x2="100" y2="100">
-                <stop offset="0%" stop-color="#fef08a"/>
-                <stop offset="50%" stop-color="#f59e0b"/>
-                <stop offset="100%" stop-color="#b45309"/>
-              </linearGradient>
-              <linearGradient id="goldInner" x1="0" y1="0" x2="100" y2="100">
-                <stop offset="0%" stop-color="#fffbeb"/>
-                <stop offset="50%" stop-color="#fde047"/>
-                <stop offset="100%" stop-color="#ca8a04"/>
-              </linearGradient>
-              <linearGradient id="goldRibbon" x1="0" y1="0" x2="0" y2="120">
-                <stop offset="0%" stop-color="#f59e0b"/>
-                <stop offset="100%" stop-color="#78350f"/>
-              </linearGradient>
-            </defs>
           </svg>
         `;
       } else if (num === 2) {
         return `
-          <svg class="w-11 h-14 drop-shadow-lg overflow-visible flex-shrink-0" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M28 70 L28 118 L50 100 L72 118 L72 70 Z" fill="url(#silverRibbon)" stroke="#334155" stroke-width="2"/>
-            <circle cx="50" cy="50" r="46" fill="url(#silverOuter)" stroke="#475569" stroke-width="2.5"/>
+          <svg class="w-11 h-14 drop-shadow-lg overflow-visible flex-shrink-0" viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="silverOuter_${u}" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#f8fafc"/>
+                <stop offset="50%" stop-color="#94a3b8"/>
+                <stop offset="100%" stop-color="#475569"/>
+              </linearGradient>
+              <linearGradient id="silverInner_${u}" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#ffffff"/>
+                <stop offset="50%" stop-color="#cbd5e1"/>
+                <stop offset="100%" stop-color="#64748b"/>
+              </linearGradient>
+              <linearGradient id="silverRibbon_${u}" x1="0" y1="0" x2="0" y2="120" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#64748b"/>
+                <stop offset="100%" stop-color="#1e293b"/>
+              </linearGradient>
+            </defs>
+            <path d="M28 70 L28 118 L50 100 L72 118 L72 70 Z" fill="url(#silverRibbon_${u})" stroke="#334155" stroke-width="2"/>
+            <circle cx="50" cy="50" r="46" fill="url(#silverOuter_${u})" stroke="#475569" stroke-width="2.5"/>
             <circle cx="50" cy="50" r="40" stroke="#f8fafc" stroke-width="2" stroke-dasharray="4 2"/>
-            <circle cx="50" cy="50" r="34" fill="url(#silverInner)" stroke="#334155" stroke-width="2"/>
+            <circle cx="50" cy="50" r="34" fill="url(#silverInner_${u})" stroke="#334155" stroke-width="2"/>
             <circle cx="50" cy="50" r="27" stroke="#1e293b" stroke-width="1.2" stroke-dasharray="3 3" fill="none"/>
             <path d="M43 27 L44 29 L46 29 L44.5 30.5 L45 32.5 L43 31 L41 32.5 L41.5 30.5 L40 29 L42 29 Z" fill="#334155"/>
             <path d="M50 24 L51.5 26.5 L54 26.5 L52 28 L53 30.5 L50 29 L47 30.5 L48 28 L46 26.5 L48.5 26.5 Z" fill="#334155"/>
             <path d="M57 27 L58 29 L60 29 L58.5 30.5 L59 32.5 L57 31 L55 32.5 L55.5 30.5 L54 29 L56 29 Z" fill="#334155"/>
             <text x="50" y="61" font-family="Poppins, sans-serif" font-size="32" font-weight="900" fill="#0f172a" text-anchor="middle">2</text>
-            <defs>
-              <linearGradient id="silverOuter" x1="0" y1="0" x2="100" y2="100">
-                <stop offset="0%" stop-color="#f8fafc"/>
-                <stop offset="50%" stop-color="#94a3b8"/>
-                <stop offset="100%" stop-color="#475569"/>
-              </linearGradient>
-              <linearGradient id="silverInner" x1="0" y1="0" x2="100" y2="100">
-                <stop offset="0%" stop-color="#ffffff"/>
-                <stop offset="50%" stop-color="#cbd5e1"/>
-                <stop offset="100%" stop-color="#64748b"/>
-              </linearGradient>
-              <linearGradient id="silverRibbon" x1="0" y1="0" x2="0" y2="120">
-                <stop offset="0%" stop-color="#64748b"/>
-                <stop offset="100%" stop-color="#1e293b"/>
-              </linearGradient>
-            </defs>
           </svg>
         `;
       } else {
         return `
-          <svg class="w-11 h-14 drop-shadow-lg overflow-visible flex-shrink-0" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M28 70 L28 118 L50 100 L72 118 L72 70 Z" fill="url(#bronzeRibbon)" stroke="#78350f" stroke-width="2"/>
-            <circle cx="50" cy="50" r="46" fill="url(#bronzeOuter)" stroke="#92400e" stroke-width="2.5"/>
+          <svg class="w-11 h-14 drop-shadow-lg overflow-visible flex-shrink-0" viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="bronzeOuter_${u}" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#ffedd5"/>
+                <stop offset="50%" stop-color="#d97706"/>
+                <stop offset="100%" stop-color="#78350f"/>
+              </linearGradient>
+              <linearGradient id="bronzeInner_${u}" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#fff7ed"/>
+                <stop offset="50%" stop-color="#f97316"/>
+                <stop offset="100%" stop-color="#9a3412"/>
+              </linearGradient>
+              <linearGradient id="bronzeRibbon_${u}" x1="0" y1="0" x2="0" y2="120" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#ea580c"/>
+                <stop offset="100%" stop-color="#451a03"/>
+              </linearGradient>
+            </defs>
+            <path d="M28 70 L28 118 L50 100 L72 118 L72 70 Z" fill="url(#bronzeRibbon_${u})" stroke="#78350f" stroke-width="2"/>
+            <circle cx="50" cy="50" r="46" fill="url(#bronzeOuter_${u})" stroke="#92400e" stroke-width="2.5"/>
             <circle cx="50" cy="50" r="40" stroke="#ffedd5" stroke-width="2" stroke-dasharray="4 2"/>
-            <circle cx="50" cy="50" r="34" fill="url(#bronzeInner)" stroke="#78350f" stroke-width="2"/>
+            <circle cx="50" cy="50" r="34" fill="url(#bronzeInner_${u})" stroke="#78350f" stroke-width="2"/>
             <circle cx="50" cy="50" r="27" stroke="#451a03" stroke-width="1.2" stroke-dasharray="3 3" fill="none"/>
             <path d="M43 27 L44 29 L46 29 L44.5 30.5 L45 32.5 L43 31 L41 32.5 L41.5 30.5 L40 29 L42 29 Z" fill="#78350f"/>
             <path d="M50 24 L51.5 26.5 L54 26.5 L52 28 L53 30.5 L50 29 L47 30.5 L48 28 L46 26.5 L48.5 26.5 Z" fill="#78350f"/>
             <path d="M57 27 L58 29 L60 29 L58.5 30.5 L59 32.5 L57 31 L55 32.5 L55.5 30.5 L54 29 L56 29 Z" fill="#78350f"/>
             <text x="50" y="61" font-family="Poppins, sans-serif" font-size="32" font-weight="900" fill="#451a03" text-anchor="middle">3</text>
-            <defs>
-              <linearGradient id="bronzeOuter" x1="0" y1="0" x2="100" y2="100">
-                <stop offset="0%" stop-color="#ffedd5"/>
-                <stop offset="50%" stop-color="#d97706"/>
-                <stop offset="100%" stop-color="#78350f"/>
-              </linearGradient>
-              <linearGradient id="bronzeInner" x1="0" y1="0" x2="100" y2="100">
-                <stop offset="0%" stop-color="#fff7ed"/>
-                <stop offset="50%" stop-color="#f97316"/>
-                <stop offset="100%" stop-color="#9a3412"/>
-              </linearGradient>
-              <linearGradient id="bronzeRibbon" x1="0" y1="0" x2="0" y2="120">
-                <stop offset="0%" stop-color="#ea580c"/>
-                <stop offset="100%" stop-color="#451a03"/>
-              </linearGradient>
-            </defs>
           </svg>
         `;
       }
