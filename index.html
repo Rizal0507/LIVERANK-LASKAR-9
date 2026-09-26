@@ -76,11 +76,11 @@
 
     /* ANIMASI OVERLAY PROMO */
     @keyframes promoZoom {
-      0% { transform: scale(0.8); opacity: 0; }
+      0% { transform: scale(0.7); opacity: 0; }
       100% { transform: scale(1); opacity: 1; }
     }
     .animate-promo-card {
-      animation: promoZoom 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      animation: promoZoom 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
 
     @keyframes progressBar {
@@ -88,68 +88,55 @@
       100% { width: 0%; }
     }
     .animate-progress {
-      animation: progressBar 12s linear forwards;
+      animation: progressBar 15s linear forwards;
     }
   </style>
 </head>
 <body class="text-slate-800 font-sans flex flex-col justify-between h-screen p-0 m-0 relative">
 
   <!-- OVERLAY ANIMASI PROMO SPONSOR -->
-  <div id="promo-overlay" class="fixed inset-0 z-[99999] bg-slate-950/90 backdrop-blur-xl flex flex-col items-center justify-center p-4 hidden">
+  <div id="promo-overlay" class="fixed inset-0 z-[99999] bg-slate-950/95 backdrop-blur-xl flex flex-col items-center justify-center p-4 hidden select-none">
     <!-- COUNTDOWN TIMER -->
     <div class="absolute top-0 left-0 w-full h-2 bg-slate-800 overflow-hidden">
       <div id="promo-progress-bar" class="h-full bg-gradient-to-r from-cyan-400 via-pink-500 to-amber-400"></div>
     </div>
 
     <!-- TOMBOL TUTUP -->
-    <button onclick="hidePromoOverlay()" class="absolute top-6 right-6 bg-white/10 hover:bg-white/20 border border-white/20 text-white w-10 h-10 rounded-full flex items-center justify-center transition-all shadow-lg">
+    <button onclick="hidePromoOverlay()" class="absolute top-6 right-6 bg-white/10 hover:bg-white/20 border border-white/20 text-white w-10 h-10 rounded-full flex items-center justify-center transition-all shadow-lg z-10">
       <i class="fa-solid fa-xmark text-lg"></i>
     </button>
 
     <!-- KONTEN PROMO ANIMASI KODE -->
-    <div class="animate-promo-card max-w-5xl w-full bg-gradient-to-b from-slate-900 to-blue-950 border-2 border-pink-500/50 rounded-3xl p-6 md:p-10 shadow-[0_0_50px_rgba(236,72,153,0.3)] text-center relative overflow-hidden">
+    <div class="max-w-4xl w-full bg-gradient-to-b from-slate-900 to-blue-950 border-2 border-pink-500/50 rounded-3xl p-6 md:p-10 shadow-[0_0_50px_rgba(236,72,153,0.3)] text-center relative overflow-hidden min-h-[420px] flex flex-col items-center justify-between">
       
-      <span class="inline-block px-4 py-1 rounded-full bg-pink-500/20 border border-pink-400/40 text-pink-300 font-black text-xs tracking-widest uppercase mb-4 animate-pulse">
-        OFFICIAL PARTNERS & SPONSORSHIP
-      </span>
-
-      <h2 class="text-2xl md:text-5xl font-black text-white tracking-wider uppercase mb-8 leading-tight drop-shadow-md">
+      <h2 class="text-2xl md:text-5xl font-black text-white tracking-wider uppercase mb-4 leading-tight drop-shadow-md">
         LKBB LASKAR 9 <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-pink-400">2026</span>
       </h2>
 
-      <!-- GRID LOGO BRANDING SIKLUS UTAMA (URUTAN SESUAI PERMINTAAN) -->
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 items-center justify-center my-6">
-        
-        <!-- 1. LOGO LASKAR 9 -->
-        <div class="bg-white/5 border border-white/10 rounded-2xl p-4 flex flex-col items-center justify-center gap-2 hover:border-pink-500/50 transition-all group min-h-[160px]">
-          <img src="https://lh3.googleusercontent.com/d/1Hrwrv_NmmmPfOz8jF-S1PqVpnfh5iVF2=s1000" alt="Laskar 9" class="h-20 w-auto object-contain group-hover:scale-110 transition-transform">
-          <span class="text-[10px] font-extrabold text-slate-300 uppercase">EVENT ORGANIZER</span>
-        </div>
+      <!-- TAHAP 1: TAMPILAN SINGLE LOGO FULLSIZE (1 PER 1) -->
+      <div id="promo-stage-single" class="flex flex-col items-center justify-center my-auto w-full py-4">
+        <img id="promo-single-img" src="" alt="Sponsor Logo" class="h-44 md:h-64 w-auto object-contain drop-shadow-[0_0_30px_rgba(255,255,255,0.3)]">
+      </div>
 
-        <!-- 2. LOGO TJOBRUT STORE -->
-        <div class="bg-white/5 border border-white/10 rounded-2xl p-4 flex flex-col items-center justify-center gap-2 hover:border-pink-500/50 transition-all group min-h-[160px]">
-          <img src="https://lh3.googleusercontent.com/d/18Kp-VGP2VXJEBmiUX-vU0_8DjrssnHsm=s1000" alt="Tjobrut Store" class="h-20 w-auto object-contain group-hover:scale-110 transition-transform">
-          <span class="text-[10px] font-extrabold text-slate-300 uppercase">OFFICIAL MERCHANDISE</span>
+      <!-- TAHAP 2: TAMPILAN SEMUA LOGO BERSAMAAN DI AKHIR -->
+      <div id="promo-stage-all" class="hidden grid-cols-2 md:grid-cols-4 gap-4 items-center justify-center w-full my-auto py-4">
+        <div class="bg-white/5 border border-white/10 rounded-2xl p-4 flex items-center justify-center min-h-[140px] hover:border-pink-500/50 transition-all">
+          <img src="https://lh3.googleusercontent.com/d/1Hrwrv_NmmmPfOz8jF-S1PqVpnfh5iVF2=s1000" alt="Laskar 9" class="h-24 md:h-28 w-auto object-contain">
         </div>
-
-        <!-- 3. LOGO REKAP ANDALAN -->
-        <div class="bg-white/5 border border-white/10 rounded-2xl p-4 flex flex-col items-center justify-center gap-2 hover:border-blue-500/50 transition-all group min-h-[160px]">
-          <img src="https://lh3.googleusercontent.com/d/1UHSI3CLB0YCZ7uQ3O0sVIGMrVeK7qrK0=s1000" alt="Rekap Andalan" class="h-20 w-auto object-contain group-hover:scale-110 transition-transform">
-          <span class="text-[10px] font-extrabold text-slate-300 uppercase">REKAP SYSTEM</span>
+        <div class="bg-white/5 border border-white/10 rounded-2xl p-4 flex items-center justify-center min-h-[140px] hover:border-pink-500/50 transition-all">
+          <img src="https://lh3.googleusercontent.com/d/185LBG7napo7sSUDR29NBOi179fN1dbep=s1000" alt="Tjobrut Store" class="h-24 md:h-28 w-auto object-contain">
         </div>
-
-        <!-- 4. LOGO COSMO ATRIBUT -->
-        <div class="bg-white/5 border border-white/10 rounded-2xl p-4 flex flex-col items-center justify-center gap-2 hover:border-amber-500/50 transition-all group min-h-[160px]">
-          <img src="https://lh3.googleusercontent.com/d/1zWmj0clTbmMg8me8bt0tgs-24SHitaDv=s1000" alt="Cosmo Atribut" class="h-20 w-auto object-contain group-hover:scale-110 transition-transform">
-          <span class="text-[10px] font-extrabold text-slate-300 uppercase">ATRIBUT PASKIBRA</span>
+        <div class="bg-white/5 border border-white/10 rounded-2xl p-4 flex items-center justify-center min-h-[140px] hover:border-blue-500/50 transition-all">
+          <img src="https://lh3.googleusercontent.com/d/1UHSI3CLB0YCZ7uQ3O0sVIGMrVeK7qrK0=s1000" alt="Rekap Andalan" class="h-24 md:h-28 w-auto object-contain">
         </div>
-
+        <div class="bg-white/5 border border-white/10 rounded-2xl p-4 flex items-center justify-center min-h-[140px] hover:border-amber-500/50 transition-all">
+          <img src="https://lh3.googleusercontent.com/d/1S8ycvcUE99tn-w7TKXPJ5lRlbWowuwIb=s1000" alt="Cosmo Atribut" class="h-24 md:h-28 w-auto object-contain">
+        </div>
       </div>
 
       <!-- FOOTER PROMO -->
-      <div class="mt-6 pt-4 border-t border-white/10 flex flex-wrap items-center justify-between text-xs font-semibold text-slate-300 gap-2">
-        <span class="flex items-center gap-2 text-emerald-400"><i class="fab fa-whatsapp text-sm"></i> WA: 0896-9402-4600</span>
-        <span class="text-pink-300 font-bold">DISIPLIN &bull; TANGGUH &bull; BERPRESTASI</span>
+      <div class="mt-auto pt-4 border-t border-white/10 w-full flex items-center justify-center text-xs font-semibold text-slate-300">
+        <span class="flex items-center gap-2 text-emerald-400 font-extrabold text-sm"><i class="fab fa-whatsapp text-base"></i> WA: 0896-9402-4600</span>
       </div>
     </div>
   </div>
@@ -278,30 +265,100 @@
     let previousRanks = { purna: {}, smp: {}, sma: {} };
     let previousFullSignature = { purna: "", smp: "", sma: "" };
     let activeMobileTab = 'smp';
+    
     let promoTimer = null;
+    let promoStepTimeouts = [];
+
+    const promoLogos = [
+      "https://lh3.googleusercontent.com/d/1Hrwrv_NmmmPfOz8jF-S1PqVpnfh5iVF2=s1000", // Laskar 9
+      "https://lh3.googleusercontent.com/d/185LBG7napo7sSUDR29NBOi179fN1dbep=s1000", // Tjobrut Store
+      "https://lh3.googleusercontent.com/d/1UHSI3CLB0YCZ7uQ3O0sVIGMrVeK7qrK0=s1000", // Rekap Andalan
+      "https://lh3.googleusercontent.com/d/1S8ycvcUE99tn-w7TKXPJ5lRlbWowuwIb=s1000"  // Cosmo Atribut
+    ];
 
     const tabLimits = { purna: 10, smp: 29, sma: 26 };
 
-    // MEKANISME OVERLAY PROMO AUTOMATION & TRIGGER
+    // SEQUENTIAL PROMO ANIMATION CONTROLLER
+    function clearPromoSequence() {
+      promoStepTimeouts.forEach(t => clearTimeout(t));
+      promoStepTimeouts = [];
+      if (promoTimer) clearTimeout(promoTimer);
+    }
+
     function showPromoOverlay() {
+      clearPromoSequence();
+
       const overlay = document.getElementById('promo-overlay');
       const progressBar = document.getElementById('promo-progress-bar');
-      
+      const stageSingle = document.getElementById('promo-stage-single');
+      const stageAll = document.getElementById('promo-stage-all');
+      const singleImg = document.getElementById('promo-single-img');
+
       overlay.classList.remove('hidden');
+
+      // Reset progress bar (15 detik)
       progressBar.classList.remove('animate-progress');
       void progressBar.offsetWidth;
       progressBar.classList.add('animate-progress');
 
-      if (promoTimer) clearTimeout(promoTimer);
+      // Reset stage
+      stageSingle.classList.remove('hidden');
+      stageSingle.classList.add('flex');
+      stageAll.classList.add('hidden');
+      stageAll.classList.remove('grid');
+
+      // Step 1: Logo Laskar 9 (0s)
+      singleImg.src = promoLogos[0];
+      singleImg.classList.remove('animate-promo-card');
+      void singleImg.offsetWidth;
+      singleImg.classList.add('animate-promo-card');
+
+      // Step 2: Logo Tjobrut Store (2.5s)
+      promoStepTimeouts.push(setTimeout(() => {
+        singleImg.src = promoLogos[1];
+        singleImg.classList.remove('animate-promo-card');
+        void singleImg.offsetWidth;
+        singleImg.classList.add('animate-promo-card');
+      }, 2500));
+
+      // Step 3: Logo Rekap Andalan (5.0s)
+      promoStepTimeouts.push(setTimeout(() => {
+        singleImg.src = promoLogos[2];
+        singleImg.classList.remove('animate-promo-card');
+        void singleImg.offsetWidth;
+        singleImg.classList.add('animate-promo-card');
+      }, 5000));
+
+      // Step 4: Logo Cosmo Atribut (7.5s)
+      promoStepTimeouts.push(setTimeout(() => {
+        singleImg.src = promoLogos[3];
+        singleImg.classList.remove('animate-promo-card');
+        void singleImg.offsetWidth;
+        singleImg.classList.add('animate-promo-card');
+      }, 7500));
+
+      // Step 5: Tampilkan SEMUA Logo Bersamaan (10.0s)
+      promoStepTimeouts.push(setTimeout(() => {
+        stageSingle.classList.add('hidden');
+        stageSingle.classList.remove('flex');
+
+        stageAll.classList.remove('hidden');
+        stageAll.classList.add('grid');
+        stageAll.classList.remove('animate-promo-card');
+        void stageAll.offsetWidth;
+        stageAll.classList.add('animate-promo-card');
+      }, 10000));
+
+      // Otomatis Tutup setelah 15 detik
       promoTimer = setTimeout(() => {
         hidePromoOverlay();
-      }, 12000);
+      }, 15000);
     }
 
     function hidePromoOverlay() {
       const overlay = document.getElementById('promo-overlay');
       overlay.classList.add('hidden');
-      if (promoTimer) clearTimeout(promoTimer);
+      clearPromoSequence();
     }
 
     // Trigger Otomatis Setiap 15 Menit
@@ -489,7 +546,7 @@
             <circle cx="50" cy="50" r="34" fill="url(#silverInner_${u})" stroke="#334155" stroke-width="2"/>
             <circle cx="50" cy="50" r="27" stroke="#1e293b" stroke-width="1.2" stroke-dasharray="3 3" fill="none"/>
             <path d="M43 27 L44 29 L46 29 L44.5 30.5 L45 32.5 L43 31 L41 32.5 L41.5 30.5 L40 29 L42 29 Z" fill="#334155"/>
-            <path d="M50 24 L51.5 26.5 L54 26.5 L52 28 L53 30.5 L50 29 L47 26.5 L48 28 L46 26.5 L48.5 26.5 Z" fill="#334155"/>
+            <path d="M50 24 L51.5 26.5 L54 26.5 L52 28 L53 30.5 L50 29 L47 30.5 L48 28 L46 26.5 L48.5 26.5 Z" fill="#334155"/>
             <path d="M57 27 L58 29 L60 29 L58.5 30.5 L59 32.5 L57 31 L55 32.5 L55.5 30.5 L54 29 L56 29 Z" fill="#334155"/>
             <text x="50" y="61" font-family="Poppins, sans-serif" font-size="32" font-weight="900" fill="#0f172a" text-anchor="middle">2</text>
           </svg>
@@ -519,7 +576,7 @@
             <circle cx="50" cy="50" r="34" fill="url(#bronzeInner_${u})" stroke="#78350f" stroke-width="2"/>
             <circle cx="50" cy="50" r="27" stroke="#451a03" stroke-width="1.2" stroke-dasharray="3 3" fill="none"/>
             <path d="M43 27 L44 29 L46 29 L44.5 30.5 L45 32.5 L43 31 L41 32.5 L41.5 30.5 L40 29 L42 29 Z" fill="#78350f"/>
-            <path d="M50 24 L51.5 26.5 L54 26.5 L52 28 L53 30.5 L50 29 L47 26.5 L48 28 L46 26.5 L48.5 26.5 Z" fill="#78350f"/>
+            <path d="M50 24 L51.5 26.5 L54 26.5 L52 28 L53 30.5 L50 29 L47 30.5 L48 28 L46 26.5 L48.5 26.5 Z" fill="#78350f"/>
             <path d="M57 27 L58 29 L60 29 L58.5 30.5 L59 32.5 L57 31 L55 32.5 L55.5 30.5 L54 29 L56 29 Z" fill="#78350f"/>
             <text x="50" y="61" font-family="Poppins, sans-serif" font-size="32" font-weight="900" fill="#451a03" text-anchor="middle">3</text>
           </svg>
