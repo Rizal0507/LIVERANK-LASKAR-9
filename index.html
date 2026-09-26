@@ -71,8 +71,10 @@
       animation: pulseGlow 1.8s infinite;
     }
 
+    /* EFEK GLOW / BERPENDAR UNTUK INDIKATOR */
     .glow-green { filter: drop-shadow(0 0 6px #22c55e); }
     .glow-red { filter: drop-shadow(0 0 6px #ef4444); }
+    .glow-yellow { filter: drop-shadow(0 0 6px #f59e0b); }
 
     /* ANIMASI OVERLAY PROMO */
     @keyframes promoZoom {
@@ -262,23 +264,91 @@
     const GAS_API_URL = "https://script.google.com/macros/s/AKfycbxRjAnO8z7zXOgT-Wkb9K4je3B8FR1dzj2EtZI6BRerTxZm8WyeET5G1n3sFPUlxKLt/exec";
 
     let liveData = { purna: [], smp: [], sma: [] };
-    let previousRanks = { purna: {}, smp: {}, sma: {} };
     let previousFullSignature = { purna: "", smp: "", sma: "" };
     let activeMobileTab = 'smp';
     
+    // STORAGE TRACKING PERKEMBANGAN INDIKATOR
+    let teamRankTracker = { purna: {}, smp: {}, sma: {} };
+    let lastPromoShowTime = Date.now();
+
     let promoTimer = null;
     let promoStepTimeouts = [];
 
     const promoLogos = [
-      "https://lh3.googleusercontent.com/d/1Hrwrv_NmmmPfOz8jF-S1PqVpnfh5iVF2=s1000", // Laskar 9
-      "https://lh3.googleusercontent.com/d/185LBG7napo7sSUDR29NBOi179fN1dbep=s1000", // Tjobrut Store
-      "https://lh3.googleusercontent.com/d/1UHSI3CLB0YCZ7uQ3O0sVIGMrVeK7qrK0=s1000", // Rekap Andalan
-      "https://lh3.googleusercontent.com/d/1S8ycvcUE99tn-w7TKXPJ5lRlbWowuwIb=s1000"  // Cosmo Atribut
+      "https://lh3.googleusercontent.com/d/1Hrwrv_NmmmPfOz8jF-S1PqVpnfh5iVF2=s1000",
+      "https://lh3.googleusercontent.com/d/185LBG7napo7sSUDR29NBOi179fN1dbep=s1000",
+      "https://lh3.googleusercontent.com/d/1UHSI3CLB0YCZ7uQ3O0sVIGMrVeK7qrK0=s1000",
+      "https://lh3.googleusercontent.com/d/1S8ycvcUE99tn-w7TKXPJ5lRlbWowuwIb=s1000"
     ];
 
     const tabLimits = { purna: 10, smp: 29, sma: 26 };
 
-    // SEQUENTIAL PROMO ANIMATION CONTROLLER
+    // DETEKSI APAKAH SELURUH PESERTA KATEGORI SUDAH SELESAI DINILAI (FINAL LOCK)
+    function isCategoryComplete(cat) {
+      const maxLimit = tabLimits[cat];
+      const items = (liveData[cat] || []).slice(0, maxLimit);
+      if (items.length < maxLimit) return false;
+      return items.every(item => item.totalNilai && item.totalNilai > 0);
+    }
+
+    // HITUNG DAN TAMPILKAN INDIKATOR TREND
+    function getTrendIndicatorHTML(cat, item, currentIndex) {
+      // Filter: Jika nilai belum ada / 0, indikator TIDAK MUNCUL
+      if (!item || !item.totalNilai || item.totalNilai <= 0) {
+        return '';
+      }
+
+      const teamKey = item.namaSekolah || item.rank || `item-${currentIndex}`;
+      const now = Date.now();
+
+      if (!teamRankTracker[cat]) teamRankTracker[cat] = {};
+      const prevData = teamRankTracker[cat][teamKey];
+
+      let status = 'same';
+      let lastChangeTime = now;
+
+      if (prevData !== undefined) {
+        if (currentIndex < prevData.rankIndex) {
+          status = 'up';
+          lastChangeTime = now;
+        } else if (currentIndex > prevData.rankIndex) {
+          status = 'down';
+          lastChangeTime = now;
+        } else {
+          status = prevData.status || 'same';
+          lastChangeTime = prevData.lastChangeTime || now;
+        }
+      }
+
+      teamRankTracker[cat][teamKey] = {
+        rankIndex: currentIndex,
+        status: status,
+        lastChangeTime: lastChangeTime
+      };
+
+      const categoryFinished = isCategoryComplete(cat);
+
+      // Jika kategori BELUM selesai, terapkan timer 5 menit (300.000 ms)
+      if (!categoryFinished) {
+        const isWithin5MinOfChange = (now - lastChangeTime) < (5 * 60 * 1000);
+        const isWithin5MinOfPromo = (now - lastPromoShowTime) < (5 * 60 * 1000);
+
+        if (!isWithin5MinOfChange && !isWithin5MinOfPromo) {
+          return '';
+        }
+      }
+
+      // Jika kategori SUDAH SELESAI (Final Lock) ATAU masih dalam batas 5 menit:
+      if (status === 'up') {
+        return `<span class="text-emerald-500 font-black text-[11px] animate-glow glow-green inline-block" title="Naik">▲</span>`;
+      } else if (status === 'down') {
+        return `<span class="text-rose-500 font-black text-[11px] animate-glow glow-red inline-block" title="Turun">▼</span>`;
+      } else {
+        return `<span class="text-amber-400 font-black text-[9px] animate-glow glow-yellow inline-block" title="Tetap">■</span>`;
+      }
+    }
+
+    // CONTROLLER ANIMASI PROMO
     function clearPromoSequence() {
       promoStepTimeouts.forEach(t => clearTimeout(t));
       promoStepTimeouts = [];
@@ -288,6 +358,9 @@
     function showPromoOverlay() {
       clearPromoSequence();
 
+      // Reset waktu promo untuk aktifkan kembali indikator selama 5 menit pasca-promo
+      lastPromoShowTime = Date.now();
+
       const overlay = document.getElementById('promo-overlay');
       const progressBar = document.getElementById('promo-progress-bar');
       const stageSingle = document.getElementById('promo-stage-single');
@@ -296,24 +369,22 @@
 
       overlay.classList.remove('hidden');
 
-      // Reset progress bar (15 detik)
       progressBar.classList.remove('animate-progress');
       void progressBar.offsetWidth;
       progressBar.classList.add('animate-progress');
 
-      // Reset stage
       stageSingle.classList.remove('hidden');
       stageSingle.classList.add('flex');
       stageAll.classList.add('hidden');
       stageAll.classList.remove('grid');
 
-      // Step 1: Logo Laskar 9 (0s)
+      // Step 1: Laskar 9 (0s)
       singleImg.src = promoLogos[0];
       singleImg.classList.remove('animate-promo-card');
       void singleImg.offsetWidth;
       singleImg.classList.add('animate-promo-card');
 
-      // Step 2: Logo Tjobrut Store (2.5s)
+      // Step 2: Tjobrut Store (2.5s)
       promoStepTimeouts.push(setTimeout(() => {
         singleImg.src = promoLogos[1];
         singleImg.classList.remove('animate-promo-card');
@@ -321,7 +392,7 @@
         singleImg.classList.add('animate-promo-card');
       }, 2500));
 
-      // Step 3: Logo Rekap Andalan (5.0s)
+      // Step 3: Rekap Andalan (5.0s)
       promoStepTimeouts.push(setTimeout(() => {
         singleImg.src = promoLogos[2];
         singleImg.classList.remove('animate-promo-card');
@@ -329,7 +400,7 @@
         singleImg.classList.add('animate-promo-card');
       }, 5000));
 
-      // Step 4: Logo Cosmo Atribut (7.5s)
+      // Step 4: Cosmo Atribut (7.5s)
       promoStepTimeouts.push(setTimeout(() => {
         singleImg.src = promoLogos[3];
         singleImg.classList.remove('animate-promo-card');
@@ -337,7 +408,7 @@
         singleImg.classList.add('animate-promo-card');
       }, 7500));
 
-      // Step 5: Tampilkan SEMUA Logo Bersamaan (10.0s)
+      // Step 5: Tampilkan Semua Bersamaan (10.0s)
       promoStepTimeouts.push(setTimeout(() => {
         stageSingle.classList.add('hidden');
         stageSingle.classList.remove('flex');
@@ -359,6 +430,7 @@
       const overlay = document.getElementById('promo-overlay');
       overlay.classList.add('hidden');
       clearPromoSequence();
+      renderAllCategories();
     }
 
     // Trigger Otomatis Setiap 15 Menit
@@ -593,6 +665,7 @@
 
       const cfg = podiumConfig[i];
       const data = item || { rank: `UTAMA ${i+1}`, totalNilai: 0, pbb: 0 };
+      const indicatorHtml = getTrendIndicatorHTML(cat, data, i);
 
       let gfTicket = '';
       if (cat === 'smp' || cat === 'sma') {
@@ -618,8 +691,10 @@
             ${gfTicket}
           </div>
 
+          <!-- LAYOUT BARIS TOTAL NILAI - INDIKATOR - PBB -->
           <div class="mt-1.5 flex items-center justify-between border-t border-slate-200/80 pt-1">
             <div class="text-[9px] font-bold text-slate-700">TOTAL: <span class="text-blue-700 font-black text-[11px]">${data.totalNilai}</span></div>
+            <div class="w-4 text-center leading-none">${indicatorHtml}</div>
             <div class="text-[9px] font-bold text-pink-600">PBB: ${data.pbb}</div>
           </div>
         </div>
@@ -683,30 +758,15 @@
 
           const rows = dataList.map((item, idx) => {
             const actualIndex = startIndex + idx;
-            const itemKey = item.rank || `row-${actualIndex}`;
-
-            let arrowIndicator = "";
-            if (previousRanks[cat] && previousRanks[cat][itemKey] !== undefined) {
-              const prevIdx = previousRanks[cat][itemKey];
-              if (actualIndex < prevIdx) {
-                arrowIndicator = `<span class="text-emerald-500 font-black text-[10px] ml-1 animate-glow glow-green">▲</span>`;
-              } else if (actualIndex > prevIdx) {
-                arrowIndicator = `<span class="text-rose-500 font-black text-[10px] ml-1 animate-glow glow-red">▼</span>`;
-              }
-            }
-
-            if (!previousRanks[cat]) previousRanks[cat] = {};
-            previousRanks[cat][itemKey] = actualIndex;
+            const indicatorHtml = getTrendIndicatorHTML(cat, item, actualIndex + 3);
 
             return `
               <tr class="bg-white hover:bg-slate-50 border-b border-slate-100 text-[10px] md:text-[11px] leading-tight">
                 <td class="py-1 px-2 font-extrabold text-slate-800 truncate">
-                  <div class="flex items-center">
-                    <span class="truncate">${item.rank || '-'}</span>
-                    ${arrowIndicator}
-                  </div>
+                  ${item.rank || '-'}
                 </td>
-                <td class="py-1 px-2 text-center font-black text-blue-700 w-14">${item.totalNilai}</td>
+                <td class="py-1 px-1 text-center font-black text-blue-700 w-12">${item.totalNilai}</td>
+                <td class="py-1 px-0 text-center w-4 leading-none">${indicatorHtml}</td>
                 <td class="py-1 px-2 text-center font-bold text-pink-600 w-10">${item.pbb}</td>
               </tr>
             `;
@@ -718,7 +778,8 @@
                 <thead>
                   <tr class="${headerBg} text-white text-[9px] md:text-[10px] font-black uppercase tracking-wider">
                     <th class="py-1 px-2">RANK</th>
-                    <th class="py-1 px-2 text-center w-14">TOTAL</th>
+                    <th class="py-1 px-1 text-center w-12">TOTAL</th>
+                    <th class="py-1 px-0 text-center w-4"></th>
                     <th class="py-1 px-2 text-center w-10">PBB</th>
                   </tr>
                 </thead>
