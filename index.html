@@ -304,18 +304,19 @@
       if (!teamRankTracker[cat]) teamRankTracker[cat] = {};
       const prevData = teamRankTracker[cat][teamKey];
 
-      let status = 'same';
+      // JIKA TIM BARU PERTAMA KALI BERHASIL MASUKKAN NILAI (>0), DEFAULT KAN KE NAIK (▲ HIJAU)
+      let status = 'up';
       let lastChangeTime = now;
 
       if (prevData !== undefined) {
         if (currentIndex < prevData.rankIndex) {
-          status = 'up';
+          status = 'up'; // Naik (Segitiga Hijau)
           lastChangeTime = now;
         } else if (currentIndex > prevData.rankIndex) {
-          status = 'down';
+          status = 'down'; // Turun (Segitiga Merah)
           lastChangeTime = now;
         } else {
-          status = prevData.status || 'same';
+          status = prevData.status || 'same'; // Posisi Tetap
           lastChangeTime = prevData.lastChangeTime || now;
         }
       }
